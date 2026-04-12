@@ -1,833 +1,97 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Smruti Ranjan Tripathy | Banking & Finance Professional</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-  :root {
-    --navy: #0B1F3A;
-    --teal: #0E7C6B;
-    --teal-light: #12A68E;
-    --gold: #C9A84C;
-    --cream: #F7F4EE;
-    --white: #FFFFFF;
-    --gray: #6B7280;
-    --light-gray: #F0EDE7;
-    --text: #1A2332;
-    --border: #DDD8CF;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--cream);
-    color: var(--text);
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(11,31,58,0.97);
-    backdrop-filter: blur(10px);
-    padding: 0 5%;
-    display: flex; align-items: center; justify-content: space-between;
-    height: 64px;
-    border-bottom: 1px solid rgba(201,168,76,0.2);
-  }
-  .nav-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem; font-weight: 600;
-    color: var(--gold);
-    letter-spacing: 0.02em;
-  }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a {
-    color: rgba(255,255,255,0.75);
-    text-decoration: none;
-    font-size: 0.82rem;
-    font-weight: 400;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--gold); }
-
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    background: var(--navy);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    padding: 100px 8% 60px;
-    gap: 4rem;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute; top: -100px; right: -100px;
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(14,124,107,0.15) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .hero::after {
-    content: '';
-    position: absolute; bottom: -50px; left: -50px;
-    width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .hero-text { animation: fadeUp 0.8s ease both; }
-  .hero-eyebrow {
-    display: inline-flex; align-items: center; gap: 10px;
-    font-size: 0.75rem; font-weight: 500;
-    color: var(--gold);
-    letter-spacing: 0.12em; text-transform: uppercase;
-    margin-bottom: 1.5rem;
-  }
-  .hero-eyebrow::before {
-    content: '';
-    width: 32px; height: 1px;
-    background: var(--gold);
-  }
-  .hero-name {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.8rem, 5vw, 4.2rem);
-    font-weight: 700;
-    color: var(--white);
-    line-height: 1.1;
-    margin-bottom: 1rem;
-  }
-  .hero-name span { color: var(--teal-light); }
-  .hero-title {
-    font-size: 1rem; font-weight: 300;
-    color: rgba(255,255,255,0.6);
-    margin-bottom: 2rem;
-    letter-spacing: 0.02em;
-  }
-  .hero-title strong { color: rgba(255,255,255,0.9); font-weight: 500; }
-  .hero-desc {
-    font-size: 0.95rem;
-    color: rgba(255,255,255,0.55);
-    line-height: 1.8;
-    max-width: 480px;
-    margin-bottom: 2.5rem;
-  }
-  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
-  .btn-primary {
-    background: var(--teal);
-    color: white;
-    padding: 12px 28px;
-    border-radius: 4px;
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    transition: background 0.2s, transform 0.15s;
-    display: inline-block;
-  }
-  .btn-primary:hover { background: var(--teal-light); transform: translateY(-1px); }
-  .btn-outline {
-    border: 1px solid rgba(255,255,255,0.25);
-    color: rgba(255,255,255,0.8);
-    padding: 12px 28px;
-    border-radius: 4px;
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 400;
-    letter-spacing: 0.04em;
-    transition: border-color 0.2s, color 0.2s;
-    display: inline-block;
-  }
-  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
-
-  .hero-stats {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: rgba(255,255,255,0.08);
-    border-radius: 8px;
-    overflow: hidden;
-    animation: fadeUp 0.8s 0.2s ease both;
-  }
-  .stat {
-    background: rgba(255,255,255,0.04);
-    padding: 2rem;
-    text-align: center;
-    transition: background 0.2s;
-  }
-  .stat:hover { background: rgba(14,124,107,0.12); }
-  .stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.4rem; font-weight: 700;
-    color: var(--gold);
-    display: block;
-    margin-bottom: 4px;
-  }
-  .stat-label {
-    font-size: 0.75rem;
-    color: rgba(255,255,255,0.5);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  /* ── SECTIONS ── */
-  section { padding: 80px 8%; }
-
-  .section-tag {
-    display: inline-flex; align-items: center; gap: 10px;
-    font-size: 0.72rem; font-weight: 500;
-    color: var(--teal);
-    letter-spacing: 0.12em; text-transform: uppercase;
-    margin-bottom: 0.75rem;
-  }
-  .section-tag::before { content: ''; width: 24px; height: 1px; background: var(--teal); }
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.8rem, 3vw, 2.6rem);
-    font-weight: 700;
-    color: var(--navy);
-    line-height: 1.2;
-    margin-bottom: 1rem;
-  }
-  .section-sub {
-    font-size: 0.95rem; color: var(--gray);
-    max-width: 560px;
-    line-height: 1.7;
-  }
-
-  /* ── ABOUT ── */
-  .about { background: var(--white); }
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.6fr;
-    gap: 5rem;
-    align-items: start;
-    margin-top: 3rem;
-  }
-  .about-left {}
-  .profile-card {
-    background: var(--navy);
-    border-radius: 8px;
-    padding: 2rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .profile-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--teal), var(--gold));
-  }
-  .profile-initials {
-    width: 80px; height: 80px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--teal), var(--teal-light));
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 1rem;
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem; font-weight: 700;
-    color: white;
-  }
-  .profile-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem; color: white; font-weight: 600;
-    margin-bottom: 4px;
-  }
-  .profile-role { font-size: 0.8rem; color: var(--gold); margin-bottom: 1.5rem; }
-  .profile-badges { display: flex; flex-direction: column; gap: 8px; }
-  .profile-badge {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 4px;
-    padding: 8px 12px;
-    font-size: 0.78rem;
-    color: rgba(255,255,255,0.75);
-    display: flex; align-items: center; gap: 8px;
-  }
-  .profile-badge::before {
-    content: '✓';
-    color: var(--teal-light);
-    font-weight: 700;
-    font-size: 0.7rem;
-  }
-  .about-right {}
-  .about-text {
-    font-size: 1rem; color: #374151;
-    line-height: 1.85;
-    margin-bottom: 1.5rem;
-  }
-  .about-text strong { color: var(--navy); font-weight: 500; }
-  .about-highlight {
-    background: var(--light-gray);
-    border-left: 3px solid var(--teal);
-    padding: 1rem 1.25rem;
-    border-radius: 0 6px 6px 0;
-    font-size: 0.92rem;
-    color: var(--navy);
-    line-height: 1.7;
-    font-style: italic;
-    margin-top: 1.5rem;
-  }
-
-  /* ── SKILLS ── */
-  .skills { background: var(--cream); }
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin-top: 3rem;
-  }
-  .skill-card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1.5rem;
-    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-  }
-  .skill-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(11,31,58,0.08);
-    border-color: var(--teal);
-  }
-  .skill-icon {
-    width: 40px; height: 40px;
-    background: rgba(14,124,107,0.1);
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-  }
-  .skill-title {
-    font-size: 0.9rem; font-weight: 500;
-    color: var(--navy);
-    margin-bottom: 0.5rem;
-  }
-  .skill-desc { font-size: 0.8rem; color: var(--gray); line-height: 1.6; }
-
-  /* ── EXPERIENCE ── */
-  .experience { background: var(--white); }
-  .exp-timeline { margin-top: 3rem; position: relative; }
-  .exp-timeline::before {
-    content: '';
-    position: absolute; left: 140px; top: 0; bottom: 0;
-    width: 1px;
-    background: var(--border);
-  }
-  .exp-item {
-    display: grid;
-    grid-template-columns: 140px 1fr;
-    gap: 2.5rem;
-    margin-bottom: 2.5rem;
-    position: relative;
-  }
-  .exp-item::before {
-    content: '';
-    position: absolute;
-    left: 133px; top: 6px;
-    width: 14px; height: 14px;
-    border-radius: 50%;
-    background: var(--white);
-    border: 2px solid var(--border);
-    z-index: 1;
-    transition: border-color 0.2s, background 0.2s;
-  }
-  .exp-item:hover::before { border-color: var(--teal); background: var(--teal); }
-  .exp-item.current::before { border-color: var(--teal); background: var(--teal); }
-  .exp-dates {
-    font-size: 0.75rem; color: var(--gray);
-    text-align: right; padding-top: 4px;
-    line-height: 1.5;
-  }
-  .exp-dates .year { font-weight: 500; color: var(--navy); display: block; }
-  .exp-content {}
-  .exp-role {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.05rem; font-weight: 600;
-    color: var(--navy);
-    margin-bottom: 2px;
-  }
-  .exp-company {
-    font-size: 0.82rem; font-weight: 500;
-    color: var(--teal);
-    margin-bottom: 0.75rem;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .exp-current-badge {
-    background: rgba(14,124,107,0.1);
-    color: var(--teal);
-    font-size: 0.68rem;
-    padding: 2px 8px;
-    border-radius: 20px;
-    font-weight: 500;
-  }
-  .exp-bullets { list-style: none; }
-  .exp-bullets li {
-    font-size: 0.85rem; color: #4B5563;
-    padding: 3px 0 3px 14px;
-    position: relative;
-    line-height: 1.6;
-  }
-  .exp-bullets li::before {
-    content: '—';
-    position: absolute; left: 0;
-    color: var(--teal); font-size: 0.7rem;
-    top: 5px;
-  }
-
-  /* ── CERTIFICATIONS ── */
-  .certifications { background: var(--navy); }
-  .certifications .section-title { color: var(--white); }
-  .certifications .section-tag { color: var(--gold); }
-  .certifications .section-tag::before { background: var(--gold); }
-  .certs-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    margin-top: 3rem;
-  }
-  .cert-card {
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 8px;
-    padding: 1.75rem;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-  .cert-card:hover { border-color: var(--gold); transform: translateY(-2px); }
-  .cert-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0;
-    height: 2px;
-  }
-  .cert-card.active::before { background: var(--teal-light); }
-  .cert-card.progress::before { background: linear-gradient(90deg, var(--gold), transparent); }
-  .cert-status {
-    font-size: 0.68rem; font-weight: 500;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    margin-bottom: 0.75rem;
-    display: flex; align-items: center; gap: 6px;
-  }
-  .cert-status.active { color: var(--teal-light); }
-  .cert-status.active::before { content: '●'; font-size: 0.5rem; }
-  .cert-status.progress { color: var(--gold); }
-  .cert-status.progress::before { content: '◐'; font-size: 0.6rem; }
-  .cert-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem; font-weight: 600;
-    color: white; margin-bottom: 6px;
-  }
-  .cert-body { font-size: 0.8rem; color: rgba(255,255,255,0.5); line-height: 1.5; }
-
-  /* ── CONTACT ── */
-  .contact { background: var(--cream); }
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    margin-top: 3rem;
-    align-items: start;
-  }
-  .contact-info { }
-  .contact-item {
-    display: flex; align-items: flex-start; gap: 1rem;
-    margin-bottom: 1.5rem;
-  }
-  .contact-icon {
-    width: 40px; height: 40px; flex-shrink: 0;
-    background: var(--navy);
-    border-radius: 6px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.9rem;
-  }
-  .contact-label { font-size: 0.72rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 2px; }
-  .contact-value { font-size: 0.9rem; color: var(--navy); font-weight: 500; }
-  .contact-cta {
-    background: var(--navy);
-    border-radius: 8px;
-    padding: 2.5rem;
-    color: white;
-  }
-  .contact-cta h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem; margin-bottom: 0.75rem;
-  }
-  .contact-cta p { font-size: 0.88rem; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 1.5rem; }
-  .contact-cta a {
-    display: inline-block;
-    background: var(--teal);
-    color: white;
-    padding: 12px 28px;
-    border-radius: 4px;
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 500;
-    transition: background 0.2s;
-  }
-  .contact-cta a:hover { background: var(--teal-light); }
-
-  /* ── FOOTER ── */
-  footer {
-    background: #060F1C;
-    padding: 2rem 8%;
-    display: flex; align-items: center; justify-content: space-between;
-    border-top: 1px solid rgba(201,168,76,0.15);
-  }
-  .footer-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1rem; color: var(--gold);
-  }
-  .footer-note { font-size: 0.75rem; color: rgba(255,255,255,0.3); }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
-  .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 768px) {
-    .hero { grid-template-columns: 1fr; padding: 100px 6% 60px; }
-    .hero-stats { margin-top: 2rem; }
-    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .skills-grid { grid-template-columns: 1fr 1fr; }
-    .certs-grid { grid-template-columns: 1fr; }
-    .exp-timeline::before { left: 0; }
-    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
-    .exp-item::before { display: none; }
-    .exp-dates { text-align: left; }
-    .nav-links { display: none; }
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Finance Manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background: #0f172a; color: white; font-family: 'Inter', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .progress-bg { background: #1e293b; height: 12px; border-radius: 10px; overflow: hidden; }
+        .progress-fill { height: 100%; transition: width 0.5s ease; }
+    </style>
 </head>
-<body>
+<body class="p-6 flex flex-col items-center">
 
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">S. R. Tripathy</div>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#certifications">Certifications</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-text">
-    <div class="hero-eyebrow">Banking & Finance Professional</div>
-    <h1 class="hero-name">Smruti Ranjan<br><span>Tripathy</span></h1>
-    <p class="hero-title">
-      <strong>Assistant Manager, Axis Bank</strong> &nbsp;·&nbsp; IRDAI Certified &nbsp;·&nbsp; B.Tech Mechanical Engineering
-    </p>
-    <p class="hero-desc">
-      I bring something rare to banking — a mechanical engineer's understanding of how businesses actually work, combined with 4 years of hands-on financial sales experience. Seeking Senior RM or SME Banking roles where that combination creates real client value.
-    </p>
-    <div class="hero-ctas">
-      <a href="#contact" class="btn-primary">Get In Touch</a>
-      <a href="#experience" class="btn-outline">View Experience</a>
-    </div>
-  </div>
-  <div class="hero-stats">
-    <div class="stat">
-      <span class="stat-num">4+</span>
-      <span class="stat-label">Years in Banking</span>
-    </div>
-    <div class="stat">
-      <span class="stat-num">₹3L</span>
-      <span class="stat-label">Monthly Premium</span>
-    </div>
-    <div class="stat">
-      <span class="stat-num">8+</span>
-      <span class="stat-label">Years Total Exp.</span>
-    </div>
-    <div class="stat">
-      <span class="stat-num">100%</span>
-      <span class="stat-label">Target Achievement</span>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section class="about" id="about">
-  <div class="section-tag">About Me</div>
-  <h2 class="section-title">The intersection of<br>engineering & finance</h2>
-  <div class="about-grid">
-    <div class="about-left fade-in">
-      <div class="profile-card">
-        <div class="profile-initials">SRT</div>
-        <div class="profile-name">Smruti Ranjan Tripathy</div>
-        <div class="profile-role">Banking Sales Professional</div>
-        <div class="profile-badges">
-          <div class="profile-badge">IRDAI Corporate Agent Certified</div>
-          <div class="profile-badge">B.Tech Mechanical Engineering</div>
-          <div class="profile-badge">Axis Bank — Assistant Manager</div>
-          <div class="profile-badge">Bargarh, Odisha</div>
+    <div class="max-w-md w-full glass p-8 rounded-3xl shadow-2xl">
+        <h1 class="text-2xl font-bold text-center mb-6 text-emerald-400">💰 My Wealth Tracker</h1>
+        
+        <div class="mb-6">
+            <label class="block text-sm text-gray-400 mb-2">Monthly Income (₹)</label>
+            <input type="number" id="salaryInput" placeholder="Enter Salary" 
+                class="w-full bg-slate-800 border-none rounded-lg p-3 text-white focus:ring-2 focus:ring-emerald-500 outline-none">
         </div>
-      </div>
-    </div>
-    <div class="about-right fade-in">
-      <p class="about-text">
-        I started my career in <strong>manufacturing and engineering</strong>, and that background has shaped the way I approach banking. While most banking professionals come purely from finance, I bring something different — a deep understanding of how businesses operate on the ground.
-      </p>
-      <p class="about-text">
-        Over the past <strong>4 years at Axis Bank</strong>, I've worked across retail lending, insurance, and CASA products — consistently meeting targets and building strong client relationships. I hold an <strong>IRDAI Corporate Agent Certification</strong> and am currently adding NISM V-A (Mutual Funds) to my profile.
-      </p>
-      <p class="about-text">
-        When a factory owner or SME client sits across the table, I speak their language — production cycles, equipment costs, working capital pressures — before I even get to the financial product. That's the edge I bring to every client relationship.
-      </p>
-      <div class="about-highlight">
-        "I'm looking for a Senior Relationship Manager or SME Banking role where a technical + financial background is a genuine advantage — not just a talking point."
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- SKILLS -->
-<section class="skills" id="skills">
-  <div class="section-tag">Expertise</div>
-  <h2 class="section-title">What I bring to the table</h2>
-  <div class="skills-grid">
-    <div class="skill-card fade-in">
-      <div class="skill-icon">🤝</div>
-      <div class="skill-title">Relationship Management</div>
-      <div class="skill-desc">End-to-end client lifecycle — acquisition, onboarding, cross-selling, and long-term retention across retail and SME segments.</div>
-    </div>
-    <div class="skill-card fade-in">
-      <div class="skill-icon">🏭</div>
-      <div class="skill-title">SME & Business Banking</div>
-      <div class="skill-desc">Unique ability to serve manufacturing and industrial clients using B.Tech Mechanical Engineering background.</div>
-    </div>
-    <div class="skill-card fade-in">
-      <div class="skill-icon">🛡️</div>
-      <div class="skill-title">Insurance Sales (IRDAI)</div>
-      <div class="skill-desc">IRDAI certified with proven track record of ₹2–3 lakhs monthly premium collections across life and general insurance products.</div>
-    </div>
-    <div class="skill-card fade-in">
-      <div class="skill-icon">🏦</div>
-      <div class="skill-title">CASA & Liability Products</div>
-      <div class="skill-desc">Proactive sourcing of savings and current accounts through market outreach, referrals, and need-based financial profiling.</div>
-    </div>
-    <div class="skill-card fade-in">
-      <div class="skill-icon">📊</div>
-      <div class="skill-title">Regulatory Compliance</div>
-      <div class="skill-desc">Strong knowledge of KYC, IRDAI, and SEBI guidelines ensuring full compliance in every client interaction.</div>
-    </div>
-    <div class="skill-card fade-in">
-      <div class="skill-icon">💼</div>
-      <div class="skill-title">Financial Product Sales</div>
-      <div class="skill-desc">Comprehensive experience across loans, insurance, CASA, and investment products with consultative selling approach.</div>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section class="experience" id="experience">
-  <div class="section-tag">Career Journey</div>
-  <h2 class="section-title">Professional Experience</h2>
-  <p class="section-sub">A cross-industry background that brings unique perspective to every client conversation.</p>
-
-  <div class="exp-timeline">
-
-    <div class="exp-item current fade-in">
-      <div class="exp-dates">
-        <span class="year">2022</span>
-        Present
-      </div>
-      <div class="exp-content">
-        <div class="exp-role">Assistant Manager</div>
-        <div class="exp-company">Axis Bank, <span class="exp-current-badge">Current</span></div>
-        <ul class="exp-bullets">
-          <li>Generated ₹2–3 lakhs in insurance premium collections per month, achieving 100% of targets across loans, CASA, and IRDAI-certified insurance.</li>
-          <li>Managed client relationships across retail and SME segments, leveraging mechanical engineering background to connect with business clients.</li>
-          <li>Conducted need-based profiling to recommend suitable financial products, improving account utilization and retention.</li>
-          <li>Ensured full KYC and IRDAI compliance; used CRM tools to track pipeline and improve engagement quality.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="exp-item fade-in">
-      <div class="exp-dates">
-        <span class="year">2021</span>
-        Oct–Feb
-      </div>
-      <div class="exp-content">
-        <div class="exp-role">Senior Relationship Manager</div>
-        <div class="exp-company">Reliance Nippon Life Insurance, Sambalpur</div>
-        <ul class="exp-bullets">
-          <li>Converted insurance leads through consultative selling, achieving consistent policy sales targets.</li>
-          <li>Maintained high client satisfaction through proactive servicing and renewal follow-ups.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="exp-item fade-in">
-      <div class="exp-dates">
-        <span class="year">2020</span>
-        Oct–Feb
-      </div>
-      <div class="exp-content">
-        <div class="exp-role">Business Development Associate</div>
-        <div class="exp-company">BYJU'S, Bangalore</div>
-        <ul class="exp-bullets">
-          <li>Conducted product demonstrations and need assessments to convert leads in a high-velocity B2C sales environment.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="exp-item fade-in">
-      <div class="exp-dates">
-        <span class="year">2020</span>
-        Jan–Sep
-      </div>
-      <div class="exp-content">
-        <div class="exp-role">Independent Sales Consultant</div>
-        <div class="exp-company">Self-Employed, Odisha</div>
-        <ul class="exp-bullets">
-          <li>Provided freelance sales consulting to local businesses; deepened knowledge of financial products and MSME dynamics in preparation for a move into banking.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="exp-item fade-in">
-      <div class="exp-dates">
-        <span class="year">2017</span>
-        Jan–Dec 2019
-      </div>
-      <div class="exp-content">
-        <div class="exp-role">Sales Manager</div>
-        <div class="exp-company">Neulife, Bangalore</div>
-        <ul class="exp-bullets">
-          <li>Drove 3 years of consistent revenue growth through strategic B2B and retail account management.</li>
-          <li>Built a portfolio of repeat clients through personalised relationship management and after-sales support.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="exp-item fade-in">
-      <div class="exp-dates">
-        <span class="year">2015</span>
-        Oct–Jul 2016
-      </div>
-      <div class="exp-content">
-        <div class="exp-role">Operations Manager</div>
-        <div class="exp-company">Grofers (Now Blinkit), Pune</div>
-        <ul class="exp-bullets">
-          <li>Managed logistics and last-mile operations; strengthened vendor partnerships to improve supply chain efficiency.</li>
-        </ul>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- CERTIFICATIONS -->
-<section class="certifications" id="certifications">
-  <div class="section-tag">Credentials</div>
-  <h2 class="section-title">Certifications</h2>
-  <div class="certs-grid">
-    <div class="cert-card active fade-in">
-      <div class="cert-status active">Certified</div>
-      <div class="cert-name">IRDAI Corporate Agent</div>
-      <div class="cert-body">Insurance Regulatory and Development Authority of India — certified to advise on and sell life and general insurance products across all categories.</div>
-    </div>
-    <div class="cert-card progress fade-in">
-      <div class="cert-status progress">In Progress</div>
-      <div class="cert-name">NISM Series V-A</div>
-      <div class="cert-body">National Institute of Securities Markets — Mutual Fund Distributors certification, completing the full-spectrum wealth advisory profile alongside IRDAI.</div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section class="contact" id="contact">
-  <div class="section-tag">Get In Touch</div>
-  <h2 class="section-title">Open to opportunities</h2>
-  <p class="section-sub">Actively seeking Senior Relationship Manager or SME Banking RM roles across India.</p>
-  <div class="contact-grid">
-    <div class="contact-info fade-in">
-      <div class="contact-item">
-        <div class="contact-icon">📧</div>
-        <div>
-          <div class="contact-label">Email</div>
-          <div class="contact-value">smrutism@outlook.com</div>
+        <div class="mb-6">
+            <label class="block text-sm text-gray-400 mb-2">Add Expense (Amount)</label>
+            <div class="flex gap-2">
+                <input type="number" id="expenseInput" placeholder="Amount" 
+                    class="flex-1 bg-slate-800 border-none rounded-lg p-3 text-white focus:ring-2 focus:ring-emerald-500 outline-none">
+                <button onclick="addExpense()" class="bg-emerald-500 hover:bg-emerald-600 px-4 py-2 rounded-lg font-bold">Add</button>
+            </div>
         </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-icon">📱</div>
-        <div>
-          <div class="contact-label">Mobile</div>
-          <div class="contact-value">+91 87969 59997</div>
+
+        <div class="space-y-4">
+            <div class="flex justify-between text-sm">
+                <span>Savings Status</span>
+                <span id="percentageText" class="font-bold">100% Left</span>
+            </div>
+            <div class="progress-bg">
+                <div id="progressBar" class="progress-fill bg-emerald-500" style="width: 100%;"></div>
+            </div>
+            <div class="flex justify-between mt-2">
+                <span class="text-gray-400 text-xs">Left: <span id="balanceText" class="text-white">₹0</span></span>
+                <span class="text-gray-400 text-xs">Spent: <span id="spentText" class="text-white">₹0</span></span>
+            </div>
         </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-icon">📍</div>
-        <div>
-          <div class="contact-label">Location</div>
-          <div class="contact-value"> Bargarh, Odisha</div>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-icon">🔗</div>
-        <div>
-          <div class="contact-label">LinkedIn</div>
-          <div class="contact-value">linkedin.com/in/smrutiranjan-tripathy-832a4075</div>
-        </div>
-      </div>
+
+        <button onclick="resetData()" class="w-full mt-8 text-xs text-gray-500 hover:text-red-400 transition">Reset Tracker</button>
     </div>
-    <div class="contact-cta fade-in">
-      <h3>Let's connect</h3>
-      <p>I'm particularly interested in SME Banking, Business Banking RM, and Senior Relationship Manager roles where my combination of mechanical engineering and banking sales experience adds genuine value to clients.</p>
-      <a href="mailto:smrutism@outlook.com">Send me an email →</a>
-    </div>
-  </div>
-</section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-name">Smruti Ranjan Tripathy</div>
-  <div class="footer-note">Banking & Finance Professional · Odisha, India</div>
-</footer>
+    <script>
+        let totalIncome = 0;
+        let totalSpent = 0;
 
-<script>
-  // Scroll fade-in
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
+        function updateUI() {
+            totalIncome = parseFloat(document.getElementById('salaryInput').value) || 0;
+            let balance = totalIncome - totalSpent;
+            let percent = totalIncome > 0 ? (balance / totalIncome) * 100 : 0;
+            
+            // UI Updates
+            document.getElementById('balanceText').innerText = "₹" + balance;
+            document.getElementById('spentText').innerText = "₹" + totalSpent;
+            document.getElementById('percentageText').innerText = Math.max(0, percent.toFixed(0)) + "% Left";
+            
+            let bar = document.getElementById('progressBar');
+            bar.style.width = Math.max(0, Math.min(100, percent)) + "%";
 
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+            // Color Grading Logic
+            if (percent > 50) {
+                bar.className = "progress-fill bg-emerald-500";
+            } else if (percent > 20) {
+                bar.className = "progress-fill bg-yellow-500";
+            } else {
+                bar.className = "progress-fill bg-red-500";
+            }
+        }
 
-  // Nav active state
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 100) current = s.getAttribute('id');
-    });
-    navLinks.forEach(a => {
-      a.style.color = a.getAttribute('href') === '#' + current
-        ? 'var(--gold)' : 'rgba(255,255,255,0.75)';
-    });
-  });
-</script>
+        function addExpense() {
+            let amount = parseFloat(document.getElementById('expenseInput').value) || 0;
+            if (amount > 0) {
+                totalSpent += amount;
+                document.getElementById('expenseInput').value = "";
+                updateUI();
+            }
+        }
+
+        function resetData() {
+            totalSpent = 0;
+            document.getElementById('salaryInput').value = "";
+            updateUI();
+        }
+
+        document.getElementById('salaryInput').addEventListener('input', updateUI);
+    </script>
 </body>
 </html>

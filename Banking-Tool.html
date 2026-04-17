@@ -11,10 +11,13 @@
   --blue-mid: #1a56a0;
   --blue-light: #2d7dd2;
   --blue-pale: #e8f0fb;
+  --blue-border: #c2d4f0;
   --gold: #c8922a;
+  --gold-light: #f5e6c8;
   --white: #ffffff;
   --off-white: #f4f7fc;
   --text-dark: #1a1a2e;
+  --text-mid: #3a3a5c;
   --text-muted: #6b7280;
   --border: #d0daea;
   --success: #1a7a3c;
@@ -29,288 +32,1097 @@ body {
   font-family: var(--font-sans);
   background: var(--off-white);
   color: var(--text-dark);
+  font-size: 15px;
   line-height: 1.6;
 }
 
-/* ===== HEADER & HERO ===== */
+/* ===== TOP STRIP ===== */
+.top-strip {
+  background: var(--blue-dark);
+  color: rgba(255,255,255,0.85);
+  font-size: 12px;
+  padding: 5px 0;
+  border-bottom: 2px solid var(--gold);
+}
+.top-strip-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.top-strip a { color: rgba(255,255,255,0.8); text-decoration: none; margin-left: 16px; }
+.top-strip a:hover { color: var(--gold); }
+
+/* ===== HEADER ===== */
 header {
   background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-mid) 100%);
-  color: white;
-  padding: 15px 20px;
-  border-bottom: 4px solid var(--gold);
+  padding: 0;
+  border-bottom: 3px solid var(--gold);
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
 }
-.header-main { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
-.hero {
-  background: var(--blue-dark);
-  color: white;
-  padding: 60px 20px;
-  text-align: center;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-.hero h2 { font-family: var(--font-serif); font-size: 32px; margin-bottom: 10px; }
-
-/* ===== NAVIGATION TABS ===== */
-.nav-tabs {
+.header-main {
   max-width: 1200px;
-  margin: -30px auto 30px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 10px;
-  padding: 0 20px;
+  margin: 0 auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
-.tab-btn {
-  background: white;
-  border: 1px solid var(--border);
-  padding: 15px;
+.emblem {
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+}
+.header-titles { flex: 1; }
+.header-titles h1 {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  color: var(--white);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+.header-titles p {
+  font-size: 12px;
+  color: rgba(255,255,255,0.75);
+  margin-top: 3px;
+  letter-spacing: 0.3px;
+}
+.header-badge {
+  background: var(--gold);
+  color: var(--blue-dark);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ===== NAV ===== */
+nav {
+  background: var(--blue-mid);
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+}
+.nav-inner a {
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  font-size: 13px;
+  padding: 11px 16px;
+  white-space: nowrap;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+.nav-inner a:hover, .nav-inner a.active {
+  color: var(--white);
+  border-bottom-color: var(--gold);
+  background: rgba(255,255,255,0.08);
+}
+
+/* ===== HERO BANNER ===== */
+.hero {
+  background: linear-gradient(135deg, var(--blue-dark) 0%, #0d3b8a 60%, var(--blue-mid) 100%);
+  color: white;
+  padding: 48px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 300px; height: 300px;
+  border: 40px solid rgba(255,255,255,0.04);
+  border-radius: 50%;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -60px; left: -60px;
+  width: 280px; height: 280px;
+  border: 30px solid rgba(200,146,42,0.08);
+  border-radius: 50%;
+}
+.hero-inner { max-width: 700px; margin: 0 auto; position: relative; z-index: 1; }
+.hero h2 {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+.hero p {
+  font-size: 15px;
+  color: rgba(255,255,255,0.82);
+  margin-bottom: 24px;
+}
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.hero-stat { text-align: center; }
+.hero-stat .num {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--gold);
+  font-family: var(--font-serif);
+}
+.hero-stat .lbl { font-size: 12px; color: rgba(255,255,255,0.75); margin-top: 2px; }
+
+/* ===== MAIN LAYOUT ===== */
+.main-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 20px;
+}
+
+/* ===== SECTION TITLE ===== */
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.section-heading::before {
+  content: '';
+  display: block;
+  width: 5px;
+  height: 28px;
+  background: var(--gold);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.section-heading h3 {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  color: var(--blue-dark);
+  font-weight: 700;
+}
+.section-heading span {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-weight: 400;
+}
+
+/* ===== TOOLS GRID ===== */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.tool-tab {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 4px;
+  padding: 14px 12px;
   text-align: center;
   cursor: pointer;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: 0.3s;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  transition: all 0.2s;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-mid);
 }
-.tab-btn.active { background: var(--blue-dark); color: white; border-color: var(--blue-dark); }
-.tab-btn:hover:not(.active) { transform: translateY(-3px); border-color: var(--blue-light); }
+.tool-tab:hover { border-color: var(--blue-light); color: var(--blue-dark); background: var(--blue-pale); }
+.tool-tab.active {
+  background: var(--blue-dark);
+  border-color: var(--blue-dark);
+  color: white;
+}
+.tool-tab .icon { font-size: 22px; display: block; margin-bottom: 6px; }
 
-/* ===== TOOL PANELS ===== */
-.main-content { max-width: 1200px; margin: 0 auto; padding: 20px; }
-.tool-panel { display: none; background: white; padding: 30px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
-.tool-panel.active { display: block; animation: fadeIn 0.5s; }
+/* ===== TOOL PANEL ===== */
+.tool-panel { display: none; }
+.tool-panel.active { display: block; }
 
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.tool-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 4px rgba(0,48,135,0.06);
+}
+.tool-card-title {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--blue-dark);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+}
+
+/* ===== SLIDER ROWS ===== */
+.sl-row {
+  display: grid;
+  grid-template-columns: 160px 1fr 110px;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.sl-label { font-size: 13px; color: var(--text-mid); font-weight: 500; }
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 3px;
+  background: var(--blue-border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--blue-dark);
+  border: 2px solid white;
+  box-shadow: 0 0 0 1px var(--blue-dark);
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+.sl-val {
+  background: var(--blue-pale);
+  border: 1px solid var(--blue-border);
+  border-radius: 3px;
+  padding: 5px 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--blue-dark);
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* ===== METRICS ROW ===== */
+.metrics-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 20px 0;
+}
+.metric-box {
+  background: var(--blue-pale);
+  border: 1px solid var(--blue-border);
+  border-radius: 4px;
+  padding: 14px 16px;
+  text-align: center;
+}
+.metric-box.highlight { background: var(--blue-dark); border-color: var(--blue-dark); }
+.metric-box .m-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+.metric-box.highlight .m-label { color: rgba(255,255,255,0.7); }
+.metric-box .m-val { font-size: 20px; font-weight: 700; color: var(--blue-dark); font-family: var(--font-serif); }
+.metric-box.highlight .m-val { color: var(--gold); }
+
+/* ===== TOGGLE GROUP ===== */
+.toggle-grp { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+.toggle-btn {
+  padding: 7px 18px;
+  font-size: 13px;
+  border: 1.5px solid var(--border);
+  border-radius: 3px;
+  background: white;
+  cursor: pointer;
+  color: var(--text-mid);
+  font-weight: 500;
+  transition: all 0.15s;
+}
+.toggle-btn.sel {
+  background: var(--blue-dark);
+  border-color: var(--blue-dark);
+  color: white;
+}
+.toggle-btn:hover:not(.sel) { border-color: var(--blue-light); color: var(--blue-dark); }
+
+/* ===== CHART ===== */
+.chart-wrap { position: relative; width: 100%; height: 260px; margin-top: 16px; }
+
+/* ===== COMPARISON CARDS ===== */
+.comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px; }
+.comp-card {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 4px;
+  padding: 16px;
+}
+.comp-card.winner { border-color: var(--success); background: var(--success-bg); }
+.comp-badge {
+  font-size: 11px;
+  background: var(--success);
+  color: white;
+  padding: 3px 10px;
+  border-radius: 2px;
+  display: inline-block;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+.comp-title { font-size: 15px; font-weight: 700; color: var(--blue-dark); margin-bottom: 12px; font-family: var(--font-serif); }
+.comp-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  padding: 6px 0;
+  border-bottom: 1px dashed var(--border);
+}
+.comp-row:last-child { border-bottom: none; font-weight: 600; }
+.comp-row span:first-child { color: var(--text-muted); }
 
 /* ===== FORM ELEMENTS ===== */
-.control-group { margin-bottom: 20px; }
-.label-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: 500; }
-input[type=range] { width: 100%; height: 6px; border-radius: 5px; background: var(--border); outline: none; -webkit-appearance: none; }
-input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; background: var(--blue-dark); border-radius: 50%; cursor: pointer; border: 2px solid white; }
+.form-row { margin-bottom: 16px; }
+.form-label { font-size: 13px; font-weight: 500; color: var(--text-mid); margin-bottom: 6px; display: block; }
+.form-input, .form-select {
+  width: 100%;
+  padding: 9px 12px;
+  font-size: 14px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  background: white;
+  color: var(--text-dark);
+  font-family: var(--font-sans);
+  transition: border 0.15s;
+}
+.form-input:focus, .form-select:focus { border-color: var(--blue-light); outline: none; box-shadow: 0 0 0 3px rgba(29,86,160,0.1); }
 
-/* ===== METRICS & CHARTS ===== */
-.metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 25px 0; }
-.metric-card { background: var(--blue-pale); padding: 20px; border-radius: 8px; text-align: center; border: 1px solid var(--blue-light); }
-.metric-card h4 { font-size: 13px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 5px; }
-.metric-card p { font-size: 24px; font-weight: 700; color: var(--blue-dark); }
+/* ===== RESULT BOX ===== */
+.result-box {
+  background: var(--blue-dark);
+  border-radius: 4px;
+  padding: 20px;
+  margin-top: 20px;
+  color: white;
+}
+.result-box .r-label { font-size: 12px; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+.result-box .r-amount { font-size: 30px; font-weight: 700; color: var(--gold); font-family: var(--font-serif); }
+.result-box .r-note { font-size: 12px; color: rgba(255,255,255,0.75); margin-top: 8px; line-height: 1.5; }
+.elig-bars { margin-top: 16px; }
+.ebar-row { margin-bottom: 10px; }
+.ebar-labels { display: flex; justify-content: space-between; font-size: 12px; color: rgba(255,255,255,0.75); margin-bottom: 4px; }
+.ebar-bg { height: 8px; background: rgba(255,255,255,0.15); border-radius: 4px; overflow: hidden; }
+.ebar-fill { height: 100%; border-radius: 4px; background: var(--gold); transition: width 0.6s ease; }
 
-.chart-container { height: 300px; position: relative; margin-top: 20px; }
+/* ===== SCHEME CARDS ===== */
+.schemes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.scheme-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 18px;
+  border-top: 3px solid var(--blue-dark);
+  box-shadow: 0 1px 4px rgba(0,48,135,0.06);
+}
+.scheme-card h4 { font-size: 14px; font-weight: 700; color: var(--blue-dark); margin-bottom: 6px; font-family: var(--font-serif); }
+.scheme-card p { font-size: 13px; color: var(--text-muted); margin-bottom: 10px; line-height: 1.5; }
+.scheme-link {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--blue-dark);
+  text-decoration: none;
+  border: 1px solid var(--blue-border);
+  padding: 5px 12px;
+  border-radius: 2px;
+  display: inline-block;
+  transition: all 0.15s;
+}
+.scheme-link:hover { background: var(--blue-dark); color: white; }
+
+/* ===== HELPLINE ===== */
+.helpline-section {
+  background: var(--blue-dark);
+  color: white;
+  padding: 32px 20px;
+  margin-top: 32px;
+}
+.helpline-inner { max-width: 1200px; margin: 0 auto; }
+.helpline-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px; }
+.helpline-card {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 4px;
+  padding: 16px;
+  text-align: center;
+}
+.helpline-card .h-num { font-size: 22px; font-weight: 700; color: var(--gold); font-family: var(--font-serif); }
+.helpline-card .h-label { font-size: 12px; color: rgba(255,255,255,0.75); margin-top: 4px; }
+.helpline-card .h-time { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 4px; }
 
 /* ===== FOOTER ===== */
-footer { background: #0a1f4d; color: white; padding: 40px 20px; text-align: center; margin-top: 50px; }
-.helpline-box { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 1000px; margin: 20px auto; }
-.h-item { background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; }
+footer {
+  background: #0a1f4d;
+  color: rgba(255,255,255,0.65);
+  padding: 24px 20px;
+  font-size: 12px;
+  border-top: 2px solid var(--gold);
+  text-align: center;
+}
+footer p { margin-bottom: 6px; }
+footer .disclaimer { color: rgba(255,255,255,0.45); font-size: 11px; max-width: 800px; margin: 10px auto 0; line-height: 1.6; }
 
-@media (max-width: 600px) {
-  .hero h2 { font-size: 24px; }
-  .nav-tabs { grid-template-columns: 1fr 1fr; }
+/* ===== RESPONSIVE ===== */
+@media (max-width: 640px) {
+  .sl-row { grid-template-columns: 1fr; }
+  .sl-label { margin-bottom: -4px; }
+  .metrics-row { grid-template-columns: 1fr 1fr; }
+  .metrics-row .metric-box:last-child { grid-column: span 2; }
+  .comp-grid { grid-template-columns: 1fr; }
+  .header-titles h1 { font-size: 16px; }
+  .hero h2 { font-size: 20px; }
+  .hero-stats { gap: 20px; }
+  .top-strip-inner { flex-direction: column; gap: 4px; text-align: center; }
 }
 </style>
 </head>
 <body>
 
+<!-- TOP STRIP -->
+<div class="top-strip">
+  <div class="top-strip-inner">
+    <span>🇮🇳 Bharat Sarkar — Ministry of Finance | Government of India</span>
+    <div>
+      <a href="#">Skip to Content</a>
+      <a href="#">Screen Reader</a>
+      <a href="#">A+ A-</a>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
 <header>
   <div class="header-main">
-    <div style="font-family: var(--font-serif); font-size: 24px; font-weight: bold;">Jan Dhan Portal</div>
-    <div style="font-size: 12px; background: var(--gold); color: black; padding: 2px 10px; border-radius: 4px; font-weight: bold;">GOVT OF INDIA</div>
+    <svg class="emblem" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="30" cy="30" r="28" fill="none" stroke="#c8922a" stroke-width="2"/>
+      <circle cx="30" cy="30" r="22" fill="rgba(255,255,255,0.08)" stroke="#c8922a" stroke-width="1" stroke-dasharray="4 3"/>
+      <circle cx="30" cy="30" r="7" fill="none" stroke="#c8922a" stroke-width="1.5"/>
+      <circle cx="30" cy="30" r="2" fill="#c8922a"/>
+      <g stroke="#c8922a" stroke-width="1">
+        <line x1="30" y1="23" x2="30" y2="13"/>
+        <line x1="30" y1="37" x2="30" y2="47"/>
+        <line x1="23" y1="30" x2="13" y2="30"/>
+        <line x1="37" y1="30" x2="47" y2="30"/>
+        <line x1="25" y1="25" x2="18" y2="18"/>
+        <line x1="35" y1="35" x2="42" y2="42"/>
+        <line x1="35" y1="25" x2="42" y2="18"/>
+        <line x1="25" y1="35" x2="18" y2="42"/>
+      </g>
+      <text x="30" y="34" text-anchor="middle" font-size="7" fill="#c8922a" font-family="serif" font-weight="bold">JDP</text>
+    </svg>
+    <div class="header-titles">
+      <h1>Jan Dhan Portal</h1>
+      <p>जन धन पोर्टल — Aapka Apna Vittiya Sahayak | Vittiya Saaksharta ke liye</p>
+    </div>
+    <div class="header-badge">Gov. of India</div>
   </div>
 </header>
 
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#tools" class="active">🔧 Tools</a>
+    <a href="#schemes">📋 Govt Schemes</a>
+    <a href="#helpline">📞 Helpline</a>
+    <a href="#">❓ FAQ</a>
+    <a href="#">🏦 Bank Locator</a>
+  </div>
+</nav>
+
+<!-- HERO -->
 <div class="hero">
-  <h2>Samjho. Bachao. Badhaao.</h2>
-  <p>Aapki bachat aur bhavishya ke liye sahi financial faisle lein.</p>
-</div>
-
-<div class="nav-tabs">
-  <div class="tab-btn active" onclick="openTab('emi', this)">🏠 Loan EMI</div>
-  <div class="tab-btn" onclick="openTab('sip', this)">💰 SIP / Mutual Fund</div>
-  <div class="tab-btn" onclick="openTab('tax', this)">📊 Income Tax</div>
-  <div class="tab-btn" onclick="openTab('budget', this)">📒 Budget Planner</div>
-</div>
-
-<div class="main-content">
-  <div id="emi" class="tool-panel active">
-    <h3 style="margin-bottom:20px; font-family: var(--font-serif);">Home / Car Loan EMI Calculator</h3>
-    <div class="control-group">
-      <div class="label-row"><span>Loan Amount</span><span id="v-loan">₹20,00,000</span></div>
-      <input type="range" id="i-loan" min="100000" max="10000000" step="50000" value="2000000" oninput="calcEMI()">
-    </div>
-    <div class="control-group">
-      <div class="label-row"><span>Interest Rate (%)</span><span id="v-rate">8.5%</span></div>
-      <input type="range" id="i-rate" min="5" max="20" step="0.1" value="8.5" oninput="calcEMI()">
-    </div>
-    <div class="control-group">
-      <div class="label-row"><span>Tenure (Years)</span><span id="v-time">20 Saal</span></div>
-      <input type="range" id="i-time" min="1" max="30" value="20" oninput="calcEMI()">
-    </div>
-    <div class="metrics-grid">
-      <div class="metric-card"><h4>Monthly EMI</h4><p id="r-emi">₹0</p></div>
-      <div class="metric-card"><h4>Total Byaaj</h4><p id="r-int">₹0</p></div>
-      <div class="metric-card"><h4>Total Bhugtan</h4><p id="r-total">₹0</p></div>
-    </div>
-    <div class="chart-container"><canvas id="emiChart"></canvas></div>
-  </div>
-
-  <div id="sip" class="tool-panel">
-    <h3 style="margin-bottom:20px; font-family: var(--font-serif);">SIP Growth Calculator</h3>
-    <div class="control-group">
-      <div class="label-row"><span>Monthly Investment</span><span id="v-sip">₹5,000</span></div>
-      <input type="range" id="i-sip" min="500" max="100000" step="500" value="5000" oninput="calcSIP()">
-    </div>
-    <div class="control-group">
-      <div class="label-row"><span>Expected Return (%)</span><span id="v-srate">12%</span></div>
-      <input type="range" id="i-srate" min="5" max="25" step="0.5" value="12" oninput="calcSIP()">
-    </div>
-    <div class="control-group">
-      <div class="label-row"><span>Years</span><span id="v-stime">10 Saal</span></div>
-      <input type="range" id="i-stime" min="1" max="40" value="10" oninput="calcSIP()">
-    </div>
-    <div class="metrics-grid">
-      <div class="metric-card"><h4>Kul Jama (Invested)</h4><p id="r-sinv">₹0</p></div>
-      <div class="metric-card"><h4>Anumanit Return</h4><p id="r-sret">₹0</p></div>
-      <div class="metric-card" style="background:var(--success-bg)"><h4>Kul Value</h4><p id="r-scorp">₹0</p></div>
-    </div>
-    <div class="chart-container"><canvas id="sipChart"></canvas></div>
-  </div>
-
-  <div id="tax" class="tool-panel">
-    <h3 style="margin-bottom:20px; font-family: var(--font-serif);">Income Tax Estimator (New vs Old)</h3>
-    <p style="color:var(--text-muted); margin-bottom: 20px;">Apni saalana income daalein aur dekhein kaun sa regime behtar hai.</p>
-    <div class="control-group">
-      <div class="label-row"><span>Annual Salary</span><span id="v-tax-sal">₹8,00,000</span></div>
-      <input type="range" id="i-tax-sal" min="300000" max="5000000" step="50000" value="800000" oninput="calcTax()">
-    </div>
-    <div class="metrics-grid">
-      <div class="metric-card"><h4>New Regime Tax</h4><p id="r-new-tax">₹0</p></div>
-      <div class="metric-card"><h4>Old Regime Tax*</h4><p id="r-old-tax">₹0</p></div>
-    </div>
-    <p style="font-size: 12px; color: var(--text-muted);">*Old regime calculation mein ₹1.5L 80C aur ₹50k Standard Deduction shamil hai.</p>
-  </div>
-
-  <div id="budget" class="tool-panel">
-    <h3 style="margin-bottom:20px; font-family: var(--font-serif);">50/30/20 Budget Planner</h3>
-    <div class="control-group">
-      <div class="label-row"><span>Monthly Income</span><span id="v-b-inc">₹50,000</span></div>
-      <input type="range" id="i-b-inc" min="10000" max="500000" step="1000" value="50000" oninput="calcBudget()">
-    </div>
-    <div class="metrics-grid">
-      <div class="metric-card"><h4>Needs (50%)</h4><p id="r-needs">₹0</p><span>Ghar, Khana, Bill</span></div>
-      <div class="metric-card"><h4>Wants (30%)</h4><p id="r-wants">₹0</p><span>Ghumna, Entertainment</span></div>
-      <div class="metric-card" style="background:var(--success-bg)"><h4>Savings (20%)</h4><p id="r-sav">₹0</p><span>Investments, FD</span></div>
+  <div class="hero-inner">
+    <h2>Samjho. Bachao. Badhaao.<br><span style="font-size:18px;font-weight:400;color:rgba(255,255,255,0.85)">India ke Common Man ke liye Financial Tools</span></h2>
+    <p>EMI calculate karo, FD vs RD compare karo, apni eligibility jaano — sab kuch free mein, Hindi mein.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">6+</div><div class="lbl">Free Tools</div></div>
+      <div class="hero-stat"><div class="num">100%</div><div class="lbl">Bilkul Free</div></div>
+      <div class="hero-stat"><div class="num">Hinglish</div><div class="lbl">Mein Available</div></div>
     </div>
   </div>
 </div>
 
+<!-- MAIN -->
+<div class="main-wrap" id="tools">
+
+  <!-- Tool Selector -->
+  <div class="section-heading">
+    <h3>Vittiya Tools</h3>
+    <span>Financial Calculators</span>
+  </div>
+  <div class="tools-grid">
+    <div class="tool-tab active" onclick="showTool('emi',this)"><span class="icon">🏠</span>EMI Calculator</div>
+    <div class="tool-tab" onclick="showTool('fdrd',this)"><span class="icon">📈</span>FD vs RD</div>
+    <div class="tool-tab" onclick="showTool('elig',this)"><span class="icon">✅</span>Eligibility Checker</div>
+    <div class="tool-tab" onclick="showTool('sip',this)"><span class="icon">💰</span>SIP Calculator</div>
+    <div class="tool-tab" onclick="showTool('tax',this)"><span class="icon">📊</span>Income Tax</div>
+    <div class="tool-tab" onclick="showTool('budget',this)"><span class="icon">📒</span>Budget Planner</div>
+  </div>
+
+  <!-- ===== EMI TOOL ===== -->
+  <div class="tool-panel active" id="tool-emi">
+    <div class="tool-card">
+      <div class="tool-card-title">🏠 EMI Calculator — Home Loan / Car Loan</div>
+      <div class="toggle-grp">
+        <button class="toggle-btn sel" onclick="setLoanType('home',this)">Home Loan</button>
+        <button class="toggle-btn" onclick="setLoanType('car',this)">Car Loan</button>
+        <button class="toggle-btn" onclick="setLoanType('personal',this)">Personal Loan</button>
+      </div>
+      <div class="sl-row">
+        <span class="sl-label">Loan Amount</span>
+        <input type="range" id="sl-amt" min="100000" max="10000000" step="50000" value="2000000" oninput="updateEMI()">
+        <span class="sl-val" id="lbl-amt">₹20,00,000</span>
+      </div>
+      <div class="sl-row">
+        <span class="sl-label">Interest Rate (% p.a.)</span>
+        <input type="range" id="sl-rate" min="6" max="18" step="0.25" value="8.5" oninput="updateEMI()">
+        <span class="sl-val" id="lbl-rate">8.50%</span>
+      </div>
+      <div class="sl-row">
+        <span class="sl-label">Loan Tenure</span>
+        <input type="range" id="sl-tenure" min="1" max="30" step="1" value="20" oninput="updateEMI()">
+        <span class="sl-val" id="lbl-tenure">20 Saal</span>
+      </div>
+      <div class="metrics-row">
+        <div class="metric-box highlight">
+          <div class="m-label">Monthly EMI</div>
+          <div class="m-val" id="m-emi">₹0</div>
+        </div>
+        <div class="metric-box">
+          <div class="m-label">Kul Byaaj (Interest)</div>
+          <div class="m-val" id="m-int">₹0</div>
+        </div>
+        <div class="metric-box">
+          <div class="m-label">Total Bhugtaan</div>
+          <div class="m-val" id="m-total">₹0</div>
+        </div>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="emiChart" role="img" aria-label="Principal vs Interest bar chart year by year"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FD vs RD TOOL ===== -->
+  <div class="tool-panel" id="tool-fdrd">
+    <div class="tool-card">
+      <div class="tool-card-title">📈 FD vs RD — Kaun Dega Zyada Fayda?</div>
+      <div class="sl-row">
+        <span class="sl-label">Monthly Rakam</span>
+        <input type="range" id="fd-monthly" min="1000" max="100000" step="500" value="10000" oninput="updateFDRD()">
+        <span class="sl-val" id="lbl-fdm">₹10,000</span>
+      </div>
+      <div class="sl-row">
+        <span class="sl-label">Samay Avadhi</span>
+        <input type="range" id="fd-tenure" min="1" max="10" step="1" value="3" oninput="updateFDRD()">
+        <span class="sl-val" id="lbl-fdt">3 Saal</span>
+      </div>
+      <div class="sl-row">
+        <span class="sl-label">FD Rate (% p.a.)</span>
+        <input type="range" id="fd-frate" min="5" max="9" step="0.25" value="7" oninput="updateFDRD()">
+        <span class="sl-val" id="lbl-fdr">7.00%</span>
+      </div>
+      <div class="sl-row">
+        <span class="sl-label">RD Rate (% p.a.)</span>
+        <input type="range" id="fd-rrate" min="4" max="8" step="0.25" value="6.5" oninput="updateFDRD()">
+        <span class="sl-val" id="lbl-rdr">6.50%</span>
+      </div>
+      <div class="comp-grid">
+        <div class="comp-card" id="fdcard">
+          <div class="comp-title">Fixed Deposit (FD)</div>
+          <div class="comp-row"><span>Lagaya Hua (Lump Sum)</span><span id="fd-p">₹0</span></div>
+          <div class="comp-row"><span>Kamaaya Byaaj</span><span id="fd-i">₹0</span></div>
+          <div class="comp-row"><span>Paripakwta Rashi</span><span id="fd-m">₹0</span></div>
+        </div>
+        <div class="comp-card" id="rdcard">
+          <div class="comp-title">Recurring Deposit (RD)</div>
+          <div class="comp-row"><span>Kul Jama</span><span id="rd-p">₹0</span></div>
+          <div class="comp-row"><span>Kamaaya Byaaj</span><span id="rd-i">₹0</span></div>
+          <div class="comp-row"><span>Paripakwta Rashi</span><span id="rd-m">₹0</span></div>
+        </div>
+      </div>
+      <div class="chart-wrap" style="height:180px">
+        <canvas id="fdrdChart" role="img" aria-label="FD vs RD maturity comparison bar chart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ELIGIBILITY TOOL ===== -->
+  <div class="tool-panel" id="tool-elig">
+    <div class="tool-card">
+      <div class="tool-card-title">✅ Loan Eligibility Checker — Kitna Loan Milega?</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div class="form-row">
+          <label class="form-label">Maasik Salary (Net) ₹</label>
+          <input class="form-input" type="number" id="e-sal" placeholder="e.g. 75000" oninput="updateElig()">
+        </div>
+        <div class="form-row">
+          <label class="form-label">Maujuda EMI / Bhugtan ₹</label>
+          <input class="form-input" type="number" id="e-emi" placeholder="0" value="0" oninput="updateElig()">
+        </div>
+        <div class="form-row">
+          <label class="form-label">Naukri Ka Prakar</label>
+          <select class="form-select" id="e-emp" onchange="updateElig()">
+            <option value="1">Salaried — Private</option>
+            <option value="1.1">Salaried — Sarkaari / PSU</option>
+            <option value="0.85">Self-Employed / Vyapaar</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label class="form-label">Chahiye Loan Prakar</label>
+          <select class="form-select" id="e-ltype" onchange="updateElig()">
+            <option value="20">Home Loan (20 saal)</option>
+            <option value="7">Car Loan (7 saal)</option>
+            <option value="5">Personal Loan (5 saal)</option>
+          </select>
+        </div>
+      </div>
+      <div class="result-box" id="elig-box" style="display:none">
+        <div class="r-label">Aapki Estimated Loan Eligibility</div>
+        <div class="r-amount" id="elig-amt">₹0</div>
+        <div class="r-note" id="elig-note"></div>
+        <div class="elig-bars" id="elig-bars"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SIP TOOL ===== -->
+  <div class="tool-panel" id="tool-sip">
+    <div class="tool-card">
+      <div class="tool-card-title">💰 SIP Calculator — Mutual Fund Investment</div>
+      <div class="sl-row">
+        <span class="sl-label">Monthly SIP</span>
+        <input type="range" id="sip-amt" min="500" max="100000" step="500" value="5000" oninput="updateSIP()">
+        <span class="sl-val" id="lbl-sip-amt">₹5,000</span>
+      </div>
+      <div class="sl-row">
+        <span class="sl-label">Expected Return (%)</span>
+        <input type="range" id="sip-rate" min="6" max="25" step="0.5" value="12" oninput="updateSIP()">
+        <span class="sl-val" id="lbl-sip-rate">12.0%</span>
+      </div>
+      <div class="sl-row">
+        <span class="sl-label">Samay Avadhi</span>
+        <input type="range" id="sip-tenure" min="1" max="30" step="1" value="10" oninput="updateSIP()">
+        <span class="sl-val" id="lbl-sip-tenure">10 Saal</span>
+      </div>
+      <div class="metrics-row">
+        <div class="metric-box">
+          <div class="m-label">Kul Nivesh</div>
+          <div class="m-val" id="sip-invested">₹0</div>
+        </div>
+        <div class="metric-box">
+          <div class="m-label">Est. Returns</div>
+          <div class="m-val" id="sip-returns">₹0</div>
+        </div>
+        <div class="metric-box highlight">
+          <div class="m-label">Kul Corpus</div>
+          <div class="m-val" id="sip-corpus">₹0</div>
+        </div>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="sipChart" role="img" aria-label="SIP growth chart over years"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TAX TOOL ===== -->
+  <div class="tool-panel" id="tool-tax">
+    <div class="tool-card">
+      <div class="tool-card-title">📊 Income Tax Estimator — New vs Old Regime</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div class="form-row">
+          <label class="form-label">Salary Income (Annual) ₹</label>
+          <input class="form-input" type="number" id="t-salary" placeholder="e.g. 900000" oninput="updateTax()">
+        </div>
+        <div class="form-row">
+          <label class="form-label">80C Investment ₹ (Old Regime)</label>
+          <input class="form-input" type="number" id="t-80c" placeholder="max 1,50,000" value="150000" oninput="updateTax()">
+        </div>
+        <div class="form-row">
+          <label class="form-label">HRA Exemption ₹</label>
+          <input class="form-input" type="number" id="t-hra" placeholder="0" value="0" oninput="updateTax()">
+        </div>
+        <div class="form-row">
+          <label class="form-label">Other Deductions ₹</label>
+          <input class="form-input" type="number" id="t-other" placeholder="0" value="0" oninput="updateTax()">
+        </div>
+      </div>
+      <div class="comp-grid" id="tax-comp" style="display:none">
+        <div class="comp-card" id="new-regime-card">
+          <div class="comp-title">New Regime (FY 2024-25)</div>
+          <div class="comp-row"><span>Taxable Income</span><span id="new-taxable">₹0</span></div>
+          <div class="comp-row"><span>Tax Payable</span><span id="new-tax">₹0</span></div>
+          <div class="comp-row"><span>Cess (4%)</span><span id="new-cess">₹0</span></div>
+          <div class="comp-row"><span>Kul Dena Hai</span><span id="new-total">₹0</span></div>
+        </div>
+        <div class="comp-card" id="old-regime-card">
+          <div class="comp-title">Old Regime</div>
+          <div class="comp-row"><span>Taxable Income</span><span id="old-taxable">₹0</span></div>
+          <div class="comp-row"><span>Tax Payable</span><span id="old-tax">₹0</span></div>
+          <div class="comp-row"><span>Cess (4%)</span><span id="old-cess">₹0</span></div>
+          <div class="comp-row"><span>Kul Dena Hai</span><span id="old-total">₹0</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== BUDGET TOOL ===== -->
+  <div class="tool-panel" id="tool-budget">
+    <div class="tool-card">
+      <div class="tool-card-title">📒 Budget Planner — 50/30/20 Rule</div>
+      <div class="sl-row">
+        <span class="sl-label">Monthly Income</span>
+        <input type="range" id="b-income" min="10000" max="500000" step="5000" value="50000" oninput="updateBudget()">
+        <span class="sl-val" id="lbl-b-income">₹50,000</span>
+      </div>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px">50/30/20 niyam ke hisab se aapke paise baantein:</p>
+      <div id="budget-bars"></div>
+      <div class="chart-wrap" style="height:200px;margin-top:16px">
+        <canvas id="budgetChart" role="img" aria-label="Budget allocation pie chart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SCHEMES ===== -->
+  <div id="schemes" style="margin-top:32px">
+    <div class="section-heading">
+      <h3>Sarkaari Yojanaen</h3>
+      <span>Government Schemes</span>
+    </div>
+    <div class="schemes-grid">
+      <div class="scheme-card">
+        <h4>PM Jan Dhan Yojana</h4>
+        <p>Zero balance account, accident insurance ₹2 lakh, overdraft facility ₹10,000 tak. Har garib parivar ke liye.</p>
+        <a href="https://pmjdy.gov.in" target="_blank" class="scheme-link">Jaankari Lein →</a>
+      </div>
+      <div class="scheme-card">
+        <h4>PM Mudra Yojana</h4>
+        <p>Choti business ke liye ₹50,000 se ₹10 lakh tak ka loan. Shishu, Kishor, Tarun — teen category.</p>
+        <a href="https://mudra.org.in" target="_blank" class="scheme-link">Apply Karein →</a>
+      </div>
+      <div class="scheme-card">
+        <h4>Sukanya Samriddhi Yojana</h4>
+        <p>Beti ke liye savings scheme — 8.2% interest, tax benefit. 10 saal se kam umar mein open karein.</p>
+        <a href="https://www.indiapost.gov.in" target="_blank" class="scheme-link">Jaankari Lein →</a>
+      </div>
+      <div class="scheme-card">
+        <h4>PM Kisan Samman Nidhi</h4>
+        <p>Kisanon ko ₹6000/saal direct unke bank account mein. Teen kiston mein milta hai.</p>
+        <a href="https://pmkisan.gov.in" target="_blank" class="scheme-link">Status Dekhen →</a>
+      </div>
+      <div class="scheme-card">
+        <h4>Atal Pension Yojana</h4>
+        <p>₹1000–₹5000/maah pension guarantee 60 saal ke baad. Asangathit kshetra ke karyakartaon ke liye.</p>
+        <a href="https://npscra.nsdl.co.in" target="_blank" class="scheme-link">Join Karein →</a>
+      </div>
+      <div class="scheme-card">
+        <h4>PM Suraksha Bima Yojana</h4>
+        <p>Sirf ₹20/saal mein ₹2 lakh ka durghatna bima. Bank account hona zaroori hai.</p>
+        <a href="https://jansuraksha.gov.in" target="_blank" class="scheme-link">Enroll Karein →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HELPLINE -->
+<div class="helpline-section" id="helpline">
+  <div class="helpline-inner">
+    <div class="section-heading" style="--gold:#c8922a">
+      <h3 style="color:white;font-family:var(--font-serif)">Helpline & Sampark</h3>
+      <span style="color:rgba(255,255,255,0.6)">Contact Us</span>
+    </div>
+    <div class="helpline-grid">
+      <div class="helpline-card">
+        <div class="h-num">1800-11-0001</div>
+        <div class="h-label">RBI Helpline</div>
+        <div class="h-time">Somwar–Shaniwar 9:30–5:30</div>
+      </div>
+      <div class="helpline-card">
+        <div class="h-num">1800-180-1111</div>
+        <div class="h-label">SBI Customer Care</div>
+        <div class="h-time">24x7 Available</div>
+      </div>
+      <div class="helpline-card">
+        <div class="h-num">14440</div>
+        <div class="h-label">Jan Dhan Helpline</div>
+        <div class="h-time">Somwar–Shukrawar 10–6</div>
+      </div>
+      <div class="helpline-card">
+        <div class="h-num">155260</div>
+        <div class="h-label">Cyber Crime Helpline</div>
+        <div class="h-time">24x7 Available</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
 <footer>
-  <h3>Sarkari Helpline</h3>
-  <div class="helpline-box">
-    <div class="h-item"><b>14440</b><br>Jan Dhan Helpline</div>
-    <div class="h-item"><b>1800-11-0001</b><br>Banking Lokpal</div>
-    <div class="h-item"><b>1930</b><br>Cyber Fraud Help</div>
+  <p>© 2025 Jan Dhan Portal | Bharat Sarkar — Ministry of Finance</p>
+  <p>Developed for the financial literacy of common citizens of India.</p>
+  <div class="disclaimer">
+    ⚠️ Disclaimer: Is portal par diye gaye sabhi calculations sirf anumaan ke liye hain. Yeh kisi bhi sarkari ya banking sanstha ki official advice nahi hai. Kisi bhi vittiya nirnay se pehle apne bank ya vittiya salahkaar se sampark karein.
   </div>
-  <p style="margin-top:20px; opacity: 0.6; font-size: 12px;">© 2025 Jan Dhan Portal | Vittiya Saaksharta Abhiyan</p>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
-let emiChart, sipChart;
+let emiC=null, fdrdC=null, sipC=null, budgetC=null;
 
-function fmt(v) { return '₹' + Math.round(v).toLocaleString('en-IN'); }
+function fmt(n){return '₹'+Math.round(n).toLocaleString('en-IN');}
+function fmtK(v){if(v>=10000000)return '₹'+(v/10000000).toFixed(1)+'Cr';if(v>=100000)return '₹'+(v/100000).toFixed(1)+'L';return '₹'+Math.round(v/1000)+'k';}
 
-function openTab(id, el) {
-  document.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+// Tool switcher
+function showTool(id, el){
+  document.querySelectorAll('.tool-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tool-panel').forEach(p=>p.classList.remove('active'));
   el.classList.add('active');
-  if(id === 'emi') calcEMI();
-  if(id === 'sip') calcSIP();
+  document.getElementById('tool-'+id).classList.add('active');
+  setTimeout(()=>{
+    if(id==='emi') updateEMI();
+    if(id==='fdrd') updateFDRD();
+    if(id==='sip') updateSIP();
+    if(id==='budget') updateBudget();
+  },50);
 }
 
-function calcEMI() {
-  const p = +document.getElementById('i-loan').value;
-  const r = +document.getElementById('i-rate').value / 12 / 100;
-  const n = +document.getElementById('i-time').value * 12;
-  document.getElementById('v-loan').innerText = fmt(p);
-  document.getElementById('v-rate').innerText = document.getElementById('i-rate').value + '%';
-  document.getElementById('v-time').innerText = (n/12) + ' Saal';
-
-  const emi = p * r * Math.pow(1+r, n) / (Math.pow(1+r, n) - 1);
-  const total = emi * n;
-  const interest = total - p;
-
-  document.getElementById('r-emi').innerText = fmt(emi);
-  document.getElementById('r-int').innerText = fmt(interest);
-  document.getElementById('r-total').innerText = fmt(total);
-
-  updateChart('emiChart', ['Principal', 'Byaaj'], [p, interest], ['#003087', '#c8922a']);
+// Loan type
+function setLoanType(t, btn){
+  document.querySelectorAll('.toggle-btn').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  const sa=document.getElementById('sl-amt');
+  const sr=document.getElementById('sl-rate');
+  const st=document.getElementById('sl-tenure');
+  if(t==='home'){sa.max=10000000;sa.value=2000000;sr.value=8.5;st.max=30;st.value=20;}
+  else if(t==='car'){sa.max=3000000;sa.value=700000;sr.value=9.5;st.max=7;st.value=5;}
+  else{sa.max=1500000;sa.value=300000;sr.value=11;st.max=5;st.value=3;}
+  updateEMI();
 }
 
-function calcSIP() {
-  const m = +document.getElementById('i-sip').value;
-  const r = +document.getElementById('i-srate').value / 12 / 100;
-  const n = +document.getElementById('i-stime').value * 12;
-  document.getElementById('v-sip').innerText = fmt(m);
-  document.getElementById('v-srate').innerText = document.getElementById('i-srate').value + '%';
-  document.getElementById('v-stime').innerText = (n/12) + ' Saal';
-
-  const corpus = m * ((Math.pow(1 + r, n) - 1) / r) * (1 + r);
-  const invested = m * n;
-  const returns = corpus - invested;
-
-  document.getElementById('r-sinv').innerText = fmt(invested);
-  document.getElementById('r-sret').innerText = fmt(returns);
-  document.getElementById('r-scorp').innerText = fmt(corpus);
-
-  updateChart('sipChart', ['Invested', 'Profit'], [invested, returns], ['#c8922a', '#1a7a3c']);
-}
-
-function calcTax() {
-  const sal = +document.getElementById('i-tax-sal').value;
-  document.getElementById('v-tax-sal').innerText = fmt(sal);
-  
-  // Simple Logic for New vs Old (FY 24-25 estimates)
-  let newTax = 0;
-  if(sal > 700000) newTax = (sal - 700000) * 0.15; // Simplified
-  
-  let oldTax = 0;
-  const taxableOld = Math.max(0, sal - 200000); // After 80C & Std Deduction
-  if(taxableOld > 500000) oldTax = (taxableOld - 500000) * 0.20;
-
-  document.getElementById('r-new-tax').innerText = fmt(newTax);
-  document.getElementById('r-old-tax').innerText = fmt(oldTax);
-}
-
-function calcBudget() {
-  const inc = +document.getElementById('i-b-inc').value;
-  document.getElementById('v-b-inc').innerText = fmt(inc);
-  document.getElementById('r-needs').innerText = fmt(inc * 0.5);
-  document.getElementById('r-wants').innerText = fmt(inc * 0.3);
-  document.getElementById('r-sav').innerText = fmt(inc * 0.2);
-}
-
-function updateChart(id, labels, data, colors) {
-  const ctx = document.getElementById(id).getContext('2d');
-  if (id === 'emiChart' && emiChart) emiChart.destroy();
-  if (id === 'sipChart' && sipChart) sipChart.destroy();
-
-  const chart = new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-      labels: labels,
-      datasets: [{ data: data, backgroundColor: colors, borderWeight: 0 }]
-    },
-    options: { maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+// ====== EMI ======
+function updateEMI(){
+  const P=+document.getElementById('sl-amt').value;
+  const r=+document.getElementById('sl-rate').value;
+  const t=+document.getElementById('sl-tenure').value;
+  document.getElementById('lbl-amt').textContent=fmt(P);
+  document.getElementById('lbl-rate').textContent=r.toFixed(2)+'%';
+  document.getElementById('lbl-tenure').textContent=t+' Saal';
+  const mR=r/12/100, n=t*12;
+  const emi=P*mR*Math.pow(1+mR,n)/(Math.pow(1+mR,n)-1);
+  const total=emi*n, interest=total-P;
+  document.getElementById('m-emi').textContent=fmt(emi);
+  document.getElementById('m-int').textContent=fmt(interest);
+  document.getElementById('m-total').textContent=fmt(total);
+  const labels=[],priD=[],intD=[];
+  let bal=P;
+  for(let y=1;y<=t;y++){
+    let yP=0,yI=0;
+    for(let m=0;m<12;m++){const im=bal*mR;const pm=emi-im;yI+=im;yP+=pm;bal-=pm;}
+    labels.push('Y'+y); priD.push(Math.round(yP)); intD.push(Math.round(yI));
+  }
+  if(emiC) emiC.destroy();
+  emiC=new Chart(document.getElementById('emiChart'),{
+    type:'bar',
+    data:{labels,datasets:[
+      {label:'Mool (Principal)',data:priD,backgroundColor:'#003087',borderWidth:0},
+      {label:'Byaaj (Interest)',data:intD,backgroundColor:'#c2d4f0',borderWidth:0}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false}},
+      scales:{x:{stacked:true,ticks:{font:{size:10},maxRotation:45,autoSkip:true,maxTicksLimit:15}},
+              y:{stacked:true,ticks:{callback:v=>fmtK(v),font:{size:10}}}}}
   });
-
-  if (id === 'emiChart') emiChart = chart;
-  else sipChart = chart;
 }
 
-// Initial Load
-calcEMI();
-calcTax();
-calcBudget();
+// ====== FD vs RD ======
+function updateFDRD(){
+  const m=+document.getElementById('fd-monthly').value;
+  const y=+document.getElementById('fd-tenure').value;
+  const fr=+document.getElementById('fd-frate').value/100;
+  const rr=+document.getElementById('fd-rrate').value/100;
+  document.getElementById('lbl-fdm').textContent=fmt(m);
+  document.getElementById('lbl-fdt').textContent=y+' Saal';
+  document.getElementById('lbl-fdr').textContent=(fr*100).toFixed(2)+'%';
+  document.getElementById('lbl-rdr').textContent=(rr*100).toFixed(2)+'%';
+  const fdLump=m*12;
+  const fdMat=fdLump*Math.pow(1+fr/4,4*y);
+  const fdInt=fdMat-fdLump;
+  const n=y*12, mrr=rr/12;
+  let rdMat=0;
+  for(let i=1;i<=n;i++) rdMat+=m*Math.pow(1+mrr,(n-i+1));
+  const rdP=m*n, rdInt=rdMat-rdP;
+  document.getElementById('fd-p').textContent=fmt(fdLump);
+  document.getElementById('fd-i').textContent=fmt(fdInt);
+  document.getElementById('fd-m').textContent=fmt(fdMat);
+  document.getElementById('rd-p').textContent=fmt(rdP);
+  document.getElementById('rd-i').textContent=fmt(rdInt);
+  document.getElementById('rd-m').textContent=fmt(rdMat);
+  const fdW=fdMat>rdMat;
+  document.getElementById('fdcard').className='comp-card'+(fdW?' winner':'');
+  document.getElementById('rdcard').className='comp-card'+(!fdW?' winner':'');
+  ['fdcard','rdcard'].forEach(id=>{const b=document.getElementById(id).querySelector('.comp-badge');if(b)b.remove();});
+  const wCard=document.getElementById(fdW?'fdcard':'rdcard');
+  const bd=document.createElement('div');bd.className='comp-badge';bd.textContent='✓ Zyada Fayda';
+  wCard.insertBefore(bd,wCard.firstChild);
+  if(fdrdC) fdrdC.destroy();
+  fdrdC=new Chart(document.getElementById('fdrdChart'),{
+    type:'bar',
+    data:{labels:['FD Maturity','RD Maturity'],
+          datasets:[{data:[Math.round(fdMat),Math.round(rdMat)],backgroundColor:['#003087','#1a7a3c'],borderWidth:0,borderRadius:3}]},
+    options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',
+      plugins:{legend:{display:false}},
+      scales:{x:{ticks:{callback:v=>fmtK(v),font:{size:11}}},y:{ticks:{font:{size:13}}}}}
+  });
+}
+
+// ====== ELIGIBILITY ======
+function updateElig(){
+  const sal=+document.getElementById('e-sal').value||0;
+  const eemi=+document.getElementById('e-emi').value||0;
+  const emp=+document.getElementById('e-emp').value;
+  const tenure=+document.getElementById('e-ltype').value;
+  if(sal<5000){document.getElementById('elig-box').style.display='none';return;}
+  const maxEMI=Math.max(0,(sal*0.5*emp)-eemi);
+  const r=8.5/12/100, n=tenure*12;
+  const maxLoan=maxEMI*(Math.pow(1+r,n)-1)/(r*Math.pow(1+r,n));
+  document.getElementById('elig-box').style.display='block';
+  document.getElementById('elig-amt').textContent=fmt(Math.max(0,maxLoan));
+  document.getElementById('elig-note').textContent=`Aapki estimated EMI capacity: ${fmt(maxEMI)}/maah | 8.5% p.a. par | ${tenure} saal tenure`;
+  const bars=[
+    {label:'Aay ki Kshamata',fill:Math.min(100,Math.round(sal/100000*100))},
+    {label:'EMI Bhar',fill:Math.min(100,Math.round(Math.max(0,1-(eemi/(sal*0.5)))*100))},
+    {label:'Eligibility Score',fill:Math.min(100,Math.round(75*emp))}
+  ];
+  document.getElementById('elig-bars').innerHTML=bars.map(b=>`
+    <div class="ebar-row">
+      <div class="ebar-labels"><span>${b.label}</span><span>${b.fill}%</span></div>
+      <div class="ebar-bg"><div class="ebar-fill" style="width:${b.fill}%"></div></div>
+    </div>`).join('');
+}
+
+// ====== SIP ======
+function updateSIP(){
+  const amt=+document.getElementById('sip-amt').value;
+  const rate=+document.getElementById('sip-rate').value;
+  const tenure=+document.getElementById('sip-tenure').value;
+  document.getElementById('lbl-sip-amt').textContent=fmt(amt);
+  document.getElementById('lbl-sip-rate').textContent=rate.toFixed(1)+'%';
+  document.getElementById('lbl-sip-tenure').textContent=tenure+' Saal';
+  const mr=rate/12/100, n=tenure*12;
+  const corpus=amt*((Math.pow(1+mr,n)-1)/mr)*(1+mr);
+  const invested=amt*n;
+  const returns=corpus-invested;
+  document.getElementById('sip-invested').textContent=fmt(invested);
+  document.getElementById('sip-returns').textContent=fmt(returns);
+  document.getElementById('sip-corpus').textContent=fmt(corpus);
+  const labels=[],invD=[],corpD=[];
+  for(let y=1;y<=tenure;y++){
+    const ny=y*12;
+    const c=amt*((Math.pow(1+mr,ny)-1)/mr)*(1+mr);
+    labels.push('Y'+y); invD.push(Math.round(amt*ny)); corpD.push(Math.round(c));
+  }
+  if(sipC) sipC.destroy();
+  sipC=new Chart(document.getElementById('sipChart'),{
+    type:'line',
+    data:{labels,datasets:[
+      {label:'Corpus',data:corpD,borderColor:'#003087',backgroundColor:'rgba(0,48,135,0.08)',fill:true,tension:0.3,borderWidth:2,pointRadius:3},
+      {label:'Invested',data:invD,borderColor:'#c8922a',backgroundColor:'transparent',borderDash:[5,4],tension:0,borderWidth:2,pointRadius:0}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false}},
+      scales:{x:{ticks:{font:{size:10},maxTicksLimit:10}},y:{ticks:{callback:v=>fmtK(v),font:{size:10}}}}}
+  });
+}
+
+// ====== TAX ======
+function calcNewTax(inc){
+  const slabs=[[300000,0],[400000,0.05],[300000,0.10],[300000,0.15],[300000,0.20],[Infinity,0.30]];
+  if(inc<=700000) return 0;
+  let tax=0, rem=inc;
+  for(const[s,r]of slabs){const t=Math.min(rem,s);tax+=t*r;rem-=t;if(rem<=0)break;}
+  return tax;
+}
+function calcOldTax(inc){
+  if(inc<=250000) return 0;
+  if(inc<=500000) return (inc-250000)*0.05;
+  if(inc<=1000000) return 12500+(inc-500000)*0.20;
+  return 112500+(inc-1000000)*0.30;
+}
+function updateTax(){
+  const sal=+document.getElementById('t-salary').value||0;
+  if(sal<1) return;
+  const c80=Math.min(+document.getElementById('t-80c').value||0,150000);
+  const hra=+document.getElementById('t-hra').value||0;
+  const other=+document.getElementById('t-other').value||0;
+  const std=50000;
+  const newTaxable=Math.max(0,sal-std);
+  const oldTaxable=Math.max(0,sal-std-c80-hra-other);
+  const nt=calcNewTax(newTaxable); const ntc=nt*0.04; const ntot=nt+ntc;
+  const ot=calcOldTax(oldTaxable); const otc=ot*0.04; const otot=ot+otc;
+  document.getElementById('tax-comp').style.display='grid';
+  document.getElementById('new-taxable').textContent=fmt(newTaxable);
+  document.getElementById('new-tax').textContent=fmt(nt);
+  document.getElementById('new-cess').textContent=fmt(ntc);
+  document.getElementById('new-total').textContent=fmt(ntot);
+  document.getElementById('old-taxable').textContent=fmt(oldTaxable);
+  document.getElementById('old-tax').textContent=fmt(ot);
+  document.getElementById('old-cess').textContent=fmt(otc);
+  document.getElementById('old-total').textContent=fmt(otot);
+  const newW=ntot<otot;
+  document.getElementById('new-regime-card').className='comp-card'+(newW?' winner':'');
+  document.getElementById('old-regime-card').className='comp-card'+(!newW?' winner':'');
+  ['new-regime-card','old-regime-card'].forEach(id=>{const b=document.getElementById(id).querySelector('.comp-badge');if(b)b.remove();});
+  const wCard=document.getElementById(newW?'new-regime-card':'old-regime-card');
+  const bd=document.createElement('div');bd.className='comp-badge';bd.textContent='✓ Aapke liye Behtar';
+  wCard.insertBefore(bd,wCard.firstChild);
+}
+
+// ====== BUDGET ======
+function updateBudget(){
+  const inc=+document.getElementById('b-income').value;
+  document.getElementById('lbl-b-income').textContent=fmt(inc);
+  const needs=inc*0.5, wants=inc*0.3, savings=inc*0.2;
+  const cats=[
+    {name:'Zarooraten (Needs) — 50%',amt:needs,pct:50,color:'#003087'},
+    {name:'Ichhaen (Wants) — 30%',amt:wants,pct:30,color:'#1a56a0'},
+    {name:'Bachat (Savings) — 20%',amt:savings,pct:20,color:'#c8922a'}
+  ];
+  document.getElementById('budget-bars').innerHTML=cats.map(c=>`
+    <div style="margin-bottom:14px">
+      <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px">
+        <span style="color:var(--text-mid);font-weight:500">${c.name}</span>
+        <span style="color:var(--blue-dark);font-weight:700">${fmt(c.amt)}</span>
+      </div>
+      <div style="height:10px;background:var(--border);border-radius:5px;overflow:hidden">
+        <div style="height:100%;width:${c.pct}%;background:${c.color};border-radius:5px;transition:width .5s"></div>
+      </div>
+    </div>`).join('');
+  if(budgetC) budgetC.destroy();
+  budgetC=new Chart(document.getElementById('budgetChart'),{
+    type:'doughnut',
+    data:{labels:['Zarooraten','Ichhaen','Bachat'],
+          datasets:[{data:[needs,wants,savings],backgroundColor:['#003087','#1a56a0','#c8922a'],borderWidth:0}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'65%',
+      plugins:{legend:{display:false}}}
+  });
+}
+
+// Init
+updateEMI();
+updateBudget();
 </script>
 </body>
 </html>

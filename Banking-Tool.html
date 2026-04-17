@@ -1,608 +1,627 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Common Man's Banking Suite</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap');
-        body { font-family: 'Inter', system_ui, sans-serif; }
-        .tool-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .tool-card:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
-        .nav-link { position: relative; }
-        .nav-link:after { content: ''; position: absolute; width: 0; height: 3px; bottom: -2px; left: 0; background-color: #22c55e; transition: all 0.3s; }
-        .nav-link:hover:after { width: 100%; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jan Dhan Portal — Aapka Apna Vittiya Sahayak</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&family=Noto+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue-dark: #003087;
+  --blue-mid: #1a56a0;
+  --blue-light: #2d7dd2;
+  --blue-pale: #e8f0fb;
+  --blue-border: #c2d4f0;
+  --gold: #c8922a;
+  --gold-light: #f5e6c8;
+  --white: #ffffff;
+  --off-white: #f4f7fc;
+  --text-dark: #1a1a2e;
+  --text-mid: #3a3a5c;
+  --text-muted: #6b7280;
+  --border: #d0daea;
+  --success: #1a7a3c;
+  --success-bg: #e8f5ed;
+  --font-serif: 'Noto Serif', Georgia, serif;
+  --font-sans: 'Noto Sans', Arial, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-sans);
+  background: var(--off-white);
+  color: var(--text-dark);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ===== TOP STRIP ===== */
+.top-strip {
+  background: var(--blue-dark);
+  color: rgba(255,255,255,0.85);
+  font-size: 12px;
+  padding: 5px 0;
+  border-bottom: 2px solid var(--gold);
+}
+.top-strip-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.top-strip a { color: rgba(255,255,255,0.8); text-decoration: none; margin-left: 16px; }
+.top-strip a:hover { color: var(--gold); }
+
+/* ===== HEADER ===== */
+header {
+  background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-mid) 100%);
+  padding: 0;
+  border-bottom: 3px solid var(--gold);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+}
+.header-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.emblem {
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+}
+.header-titles { flex: 1; }
+.header-titles h1 {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  color: var(--white);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+.header-titles p {
+  font-size: 12px;
+  color: rgba(255,255,255,0.75);
+  margin-top: 3px;
+  letter-spacing: 0.3px;
+}
+.header-badge {
+  background: var(--gold);
+  color: var(--blue-dark);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ===== NAV ===== */
+nav {
+  background: var(--blue-mid);
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+}
+.nav-inner a {
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  font-size: 13px;
+  padding: 11px 16px;
+  white-space: nowrap;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+.nav-inner a:hover, .nav-inner a.active {
+  color: var(--white);
+  border-bottom-color: var(--gold);
+  background: rgba(255,255,255,0.08);
+}
+
+/* ===== HERO BANNER ===== */
+.hero {
+  background: linear-gradient(135deg, var(--blue-dark) 0%, #0d3b8a 60%, var(--blue-mid) 100%);
+  color: white;
+  padding: 48px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero-inner { max-width: 700px; margin: 0 auto; position: relative; z-index: 1; }
+.hero h2 {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+.hero p {
+  font-size: 15px;
+  color: rgba(255,255,255,0.82);
+  margin-bottom: 24px;
+}
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.hero-stat { text-align: center; }
+.hero-stat .num {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--gold);
+  font-family: var(--font-serif);
+}
+.hero-stat .lbl { font-size: 12px; color: rgba(255,255,255,0.75); margin-top: 2px; }
+
+/* ===== MAIN LAYOUT ===== */
+.main-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 20px;
+}
+
+/* ===== SECTION TITLE ===== */
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.section-heading::before {
+  content: '';
+  display: block;
+  width: 5px;
+  height: 28px;
+  background: var(--gold);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.section-heading h3 {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  color: var(--blue-dark);
+  font-weight: 700;
+}
+.section-heading span {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-weight: 400;
+}
+
+/* ===== TOOLS GRID ===== */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.tool-tab {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 4px;
+  padding: 14px 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-mid);
+}
+.tool-tab:hover { border-color: var(--blue-light); color: var(--blue-dark); background: var(--blue-pale); }
+.tool-tab.active {
+  background: var(--blue-dark);
+  border-color: var(--blue-dark);
+  color: white;
+}
+.tool-tab .icon { font-size: 22px; display: block; margin-bottom: 6px; }
+
+/* ===== TOOL PANEL ===== */
+.tool-panel { display: none; }
+.tool-panel.active { display: block; }
+
+.tool-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 4px rgba(0,48,135,0.06);
+}
+.tool-card-title {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--blue-dark);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+}
+
+/* ===== SLIDER ROWS ===== */
+.sl-row {
+  display: grid;
+  grid-template-columns: 160px 1fr 110px;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.sl-label { font-size: 13px; color: var(--text-mid); font-weight: 500; }
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 3px;
+  background: var(--blue-border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--blue-dark);
+  border: 2px solid white;
+  box-shadow: 0 0 0 1px var(--blue-dark);
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+.sl-val {
+  background: var(--blue-pale);
+  border: 1px solid var(--blue-border);
+  border-radius: 3px;
+  padding: 5px 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--blue-dark);
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* ===== METRICS ROW ===== */
+.metrics-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 20px 0;
+}
+.metric-box {
+  background: var(--blue-pale);
+  border: 1px solid var(--blue-border);
+  border-radius: 4px;
+  padding: 14px 16px;
+  text-align: center;
+}
+.metric-box.highlight { background: var(--blue-dark); border-color: var(--blue-dark); }
+.metric-box .m-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+.metric-box.highlight .m-label { color: rgba(255,255,255,0.7); }
+.metric-box .m-val { font-size: 20px; font-weight: 700; color: var(--blue-dark); font-family: var(--font-serif); }
+.metric-box.highlight .m-val { color: var(--gold); }
+
+/* ===== TOGGLE GROUP ===== */
+.toggle-grp { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+.toggle-btn {
+  padding: 7px 18px;
+  font-size: 13px;
+  border: 1.5px solid var(--border);
+  border-radius: 3px;
+  background: white;
+  cursor: pointer;
+  color: var(--text-mid);
+  font-weight: 500;
+  transition: all 0.15s;
+}
+.toggle-btn.sel {
+  background: var(--blue-dark);
+  border-color: var(--blue-dark);
+  color: white;
+}
+.toggle-btn:hover:not(.sel) { border-color: var(--blue-light); color: var(--blue-dark); }
+
+/* ===== CHART ===== */
+.chart-wrap { position: relative; width: 100%; height: 260px; margin-top: 16px; }
+
+/* ===== COMPARISON CARDS ===== */
+.comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px; }
+.comp-card {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 4px;
+  padding: 16px;
+}
+.comp-card.winner { border-color: var(--success); background: var(--success-bg); }
+.comp-badge {
+  font-size: 11px;
+  background: var(--success);
+  color: white;
+  padding: 3px 10px;
+  border-radius: 2px;
+  display: inline-block;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+.comp-title { font-size: 15px; font-weight: 700; color: var(--blue-dark); margin-bottom: 12px; font-family: var(--font-serif); }
+.comp-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  padding: 6px 0;
+  border-bottom: 1px dashed var(--border);
+}
+.comp-row:last-child { border-bottom: none; font-weight: 600; }
+.comp-row span:first-child { color: var(--text-muted); }
+
+/* ===== FORM ELEMENTS ===== */
+.form-row { margin-bottom: 16px; }
+.form-label { font-size: 13px; font-weight: 500; color: var(--text-mid); margin-bottom: 6px; display: block; }
+.form-input, .form-select {
+  width: 100%;
+  padding: 9px 12px;
+  font-size: 14px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  background: white;
+  color: var(--text-dark);
+  font-family: var(--font-sans);
+  transition: border 0.15s;
+}
+.form-input:focus, .form-select:focus { border-color: var(--blue-light); outline: none; box-shadow: 0 0 0 3px rgba(29,86,160,0.1); }
+
+/* ===== RESULT BOX ===== */
+.result-box {
+  background: var(--blue-dark);
+  border-radius: 4px;
+  padding: 20px;
+  margin-top: 20px;
+  color: white;
+}
+.result-box .r-label { font-size: 12px; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+.result-box .r-amount { font-size: 30px; font-weight: 700; color: var(--gold); font-family: var(--font-serif); }
+.result-box .r-note { font-size: 12px; color: rgba(255,255,255,0.75); margin-top: 8px; line-height: 1.5; }
+.elig-bars { margin-top: 16px; }
+.ebar-row { margin-bottom: 10px; }
+.ebar-labels { display: flex; justify-content: space-between; font-size: 12px; color: rgba(255,255,255,0.75); margin-bottom: 4px; }
+.ebar-bg { height: 8px; background: rgba(255,255,255,0.15); border-radius: 4px; overflow: hidden; }
+.ebar-fill { height: 100%; border-radius: 4px; background: var(--gold); transition: width 0.6s ease; }
+
+/* ===== SCHEME CARDS ===== */
+.schemes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.scheme-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 18px;
+  border-top: 3px solid var(--blue-dark);
+  box-shadow: 0 1px 4px rgba(0,48,135,0.06);
+}
+.scheme-card h4 { font-size: 14px; font-weight: 700; color: var(--blue-dark); margin-bottom: 6px; font-family: var(--font-serif); }
+.scheme-card p { font-size: 13px; color: var(--text-muted); margin-bottom: 10px; line-height: 1.5; }
+.scheme-link {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--blue-dark);
+  text-decoration: none;
+  border: 1px solid var(--blue-border);
+  padding: 5px 12px;
+  border-radius: 2px;
+  display: inline-block;
+  transition: all 0.15s;
+}
+.scheme-link:hover { background: var(--blue-dark); color: white; }
+
+/* ===== HELPLINE ===== */
+.helpline-section {
+  background: var(--blue-dark);
+  color: white;
+  padding: 32px 20px;
+  margin-top: 32px;
+}
+.helpline-inner { max-width: 1200px; margin: 0 auto; }
+.helpline-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px; }
+.helpline-card {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 4px;
+  padding: 166px;
+  text-align: center;
+}
+.helpline-card .h-num { font-size: 22px; font-weight: 700; color: var(--gold); font-family: var(--font-serif); }
+.helpline-card .h-label { font-size: 12px; color: rgba(255,255,255,0.75); margin-top: 4px; }
+.helpline-card .h-time { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 4px; }
+
+/* ===== FOOTER ===== */
+footer {
+  background: #0a1f4d;
+  color: rgba(255,255,255,0.65);
+  padding: 24px 20px;
+  font-size: 12px;
+  border-top: 2px solid var(--gold);
+  text-align: center;
+}
+footer p { margin-bottom: 6px; }
+footer .disclaimer { color: rgba(255,255,255,0.45); font-size: 11px; max-width: 800px; margin: 10px auto 0; line-height: 1.6; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 640px) {
+  .sl-row { grid-template-columns: 1fr; }
+  .sl-label { margin-bottom: -4px; }
+  .metrics-row { grid-template-columns: 1fr 1fr; }
+  .metrics-row .metric-box:last-child { grid-column: span 2; }
+  .comp-grid { grid-template-columns: 1fr; }
+  .header-titles h1 { font-size: 16px; }
+  .hero h2 { font-size: 20px; }
+  .hero-stats { gap: 20px; }
+  .top-strip-inner { flex-direction: column; gap: 4px; text-align: center; }
+}
+</style>
 </head>
-<body class="bg-gradient-to-br from-slate-950 to-emerald-950 text-white min-h-screen">
+<body>
 
-    <!-- NAVBAR -->
-    <nav class="bg-white/10 backdrop-blur-lg border-b border-white/10 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-9 h-9 bg-emerald-500 rounded-2xl flex items-center justify-center text-2xl">🏦</div>
-                <h1 class="text-2xl font-semibold tracking-tight">Common Man's Banking Suite</h1>
-            </div>
-            
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
-                <a href="#emi" onclick="smoothScrollTo('emi')" class="nav-link">EMI Calculator</a>
-                <a href="#fdrd" onclick="smoothScrollTo('fdrd')" class="nav-link">FD vs RD Planner</a>
-                <a href="#eligibility" onclick="smoothScrollTo('eligibility')" class="nav-link">Eligibility Checker</a>
-            </div>
-
-            <div class="flex items-center gap-3">
-                <button onclick="toggleTheme()" 
-                        class="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-2xl flex items-center justify-center text-xl transition-colors">
-                    🌙
-                </button>
-                <a href="https://github.com" target="_blank"
-                   class="px-5 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white font-medium rounded-3xl text-sm flex items-center gap-2 transition-all">
-                    ⭐ Star on GitHub
-                </a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- HERO -->
-    <div class="max-w-7xl mx-auto px-6 pt-16 pb-20 text-center">
-        <div class="inline-flex items-center gap-2 bg-white/10 text-emerald-400 text-sm font-medium px-6 py-2 rounded-3xl mb-6">
-            🇮🇳 Made for Bharat • Free &amp; Instant
-        </div>
-        <h2 class="text-5xl md:text-6xl font-semibold leading-tight tracking-tighter mb-6">
-            Banking made simple.<br>
-            <span class="text-emerald-400">No bank jargon.</span>
-        </h2>
-        <p class="text-xl text-slate-300 max-w-2xl mx-auto mb-10">
-            Teen powerful tools ek saath: EMI Calculator with Graph • FD vs RD Comparison • Loan Eligibility Checker
-        </p>
-        <div class="flex flex-wrap justify-center gap-4">
-            <a href="#emi" onclick="smoothScrollTo('emi')" 
-               class="px-8 py-4 bg-white text-slate-900 font-semibold rounded-3xl hover:scale-105 transition-all flex items-center gap-2">
-                🚀 EMI Calculator
-            </a>
-            <a href="#fdrd" onclick="smoothScrollTo('fdrd')" 
-               class="px-8 py-4 bg-emerald-500 text-white font-semibold rounded-3xl hover:scale-105 transition-all">
-                📈 FD vs RD Planner
-            </a>
-            <a href="#eligibility" onclick="smoothScrollTo('eligibility')" 
-               class="px-8 py-4 border border-white/30 hover:border-white/60 font-semibold rounded-3xl hover:scale-105 transition-all">
-                ✅ Kitna Loan Milega?
-            </a>
-        </div>
-        <p class="text-xs text-slate-400 mt-8">✅ Real-time calculation • 📊 Beautiful charts • 📱 Mobile friendly</p>
+<div class="top-strip">
+  <div class="top-strip-inner">
+    <span>🇮🇳 Bharat Sarkar — Ministry of Finance | Government of India</span>
+    <div>
+      <a href="#">Skip to Content</a>
+      <a href="#">Screen Reader</a>
+      <a href="#">A+ A-</a>
     </div>
+  </div>
+</div>
 
-    <!-- TOOL 1: SMART EMI CALCULATOR -->
-    <div id="emi" class="max-w-7xl mx-auto px-6 pb-20">
-        <div class="tool-card bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 md:p-10">
-            <div class="flex flex-col md:flex-row gap-10">
-                <!-- Left: Form -->
-                <div class="md:w-5/12">
-                    <div class="flex items-center gap-3 mb-6">
-                        <div class="text-4xl">🏠</div>
-                        <h2 class="text-3xl font-semibold">Smart EMI Calculator</h2>
-                    </div>
-                    <p class="text-slate-400 mb-8">Home Loan ya Car Loan ke liye exact EMI + Graph. Instant calculation!</p>
-                    
-                    <div class="space-y-6">
-                        <div>
-                            <label class="block text-sm font-medium mb-2">Loan Type</label>
-                            <div class="grid grid-cols-2 gap-3">
-                                <button onclick="selectLoanType(0)" id="homeBtn"
-                                        class="loan-type-btn active px-6 py-4 rounded-2xl border-2 border-emerald-500 bg-emerald-500/10 text-white flex items-center justify-center gap-3 text-lg">
-                                    🏡 Home Loan
-                                </button>
-                                <button onclick="selectLoanType(1)" id="carBtn"
-                                        class="loan-type-btn px-6 py-4 rounded-2xl border border-white/30 hover:border-white/50 flex items-center justify-center gap-3 text-lg">
-                                    🚗 Car Loan
-                                </button>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-medium mb-2">Loan Amount (₹)</label>
-                            <input id="principal" type="number" value="5000000" 
-                                   class="w-full bg-white/10 border border-white/20 focus:border-emerald-500 rounded-2xl px-6 py-5 text-2xl font-medium outline-none">
-                        </div>
-
-                        <div class="grid grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-sm font-medium mb-2">Interest Rate (% p.a.)</label>
-                                <input id="rate" type="number" value="8.5" step="0.1"
-                                       class="w-full bg-white/10 border border-white/20 focus:border-emerald-500 rounded-2xl px-6 py-5 text-2xl font-medium outline-none">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium mb-2">Tenure (Years)</label>
-                                <input id="tenure" type="number" value="20" 
-                                       class="w-full bg-white/10 border border-white/20 focus:border-emerald-500 rounded-2xl px-6 py-5 text-2xl font-medium outline-none">
-                            </div>
-                        </div>
-
-                        <button onclick="calculateEMI()"
-                                class="w-full py-6 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-xl rounded-3xl transition-all flex items-center justify-center gap-3">
-                            <span>Calculate EMI</span>
-                            <span class="text-2xl">→</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Right: Results + Graph -->
-                <div class="md:w-7/12 bg-white/5 rounded-3xl p-8">
-                    <div id="emiResults" class="hidden">
-                        <div class="grid grid-cols-3 gap-4 mb-8">
-                            <div class="text-center bg-white/10 rounded-2xl p-5">
-                                <p class="text-emerald-400 text-sm">Monthly EMI</p>
-                                <p id="emiValue" class="text-4xl font-semibold mt-1">₹ 38,500</p>
-                            </div>
-                            <div class="text-center bg-white/10 rounded-2xl p-5">
-                                <p class="text-emerald-400 text-sm">Total Interest</p>
-                                <p id="totalInterest" class="text-4xl font-semibold mt-1">₹ 4,24,000</p>
-                            </div>
-                            <div class="text-center bg-white/10 rounded-2xl p-5">
-                                <p class="text-emerald-400 text-sm">Total Payable</p>
-                                <p id="totalPayable" class="text-4xl font-semibold mt-1">₹ 92,40,000</p>
-                            </div>
-                        </div>
-
-                        <div class="mb-6">
-                            <p class="text-slate-400 text-sm mb-4">Principal vs Interest Breakdown</p>
-                            <canvas id="emiChart" class="w-full h-64"></canvas>
-                        </div>
-
-                        <div class="text-xs bg-white/10 rounded-2xl p-4 text-slate-300 flex gap-2">
-                            <span>💡 Tip:</span> 
-                            Home loan pe tax benefit mil sakta hai (Section 80C &amp; 24B)
-                        </div>
-                    </div>
-                    
-                    <div id="emiPlaceholder" class="h-full flex items-center justify-center text-slate-400 text-center">
-                        <div>
-                            <div class="text-6xl mb-4">📊</div>
-                            <p class="text-lg">Fill the form and click Calculate</p>
-                            <p class="text-sm mt-2">Real-time graph will appear here</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<header>
+  <div class="header-main">
+    <svg class="emblem" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="30" cy="30" r="28" fill="none" stroke="#c8922a" stroke-width="2"/>
+      <text x="30" y="34" text-anchor="middle" font-size="7" fill="#c8922a" font-family="serif" font-weight="bold">JDP</text>
+    </svg>
+    <div class="header-titles">
+      <h1>Jan Dhan Portal</h1>
+      <p>जन धन पोर्टल — Aapka Apna Vittiya Sahayak</p>
     </div>
+    <div class="header-badge">Gov. of India</div>
+  </div>
+</header>
 
-    <!-- TOOL 2: FD vs RD PLANNER -->
-    <div id="fdrd" class="max-w-7xl mx-auto px-6 pb-20 bg-white/5 py-12">
-        <div class="tool-card bg-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-8 md:p-10">
-            <div class="flex items-center gap-3 mb-8">
-                <div class="text-4xl">📊</div>
-                <h2 class="text-3xl font-semibold">FD vs RD Planner</h2>
-            </div>
-            <p class="text-slate-400 mb-8 max-w-md">Dono mein se kaunsa better hai? Direct comparison with chart</p>
+<nav>
+  <div class="nav-inner">
+    <a href="#tools" class="active">🔧 Tools</a>
+    <a href="#schemes">📋 Govt Schemes</a>
+    <a href="#helpline">📞 Helpline</a>
+  </div>
+</nav>
 
-            <div class="grid md:grid-cols-2 gap-10">
-                <!-- FD -->
-                <div class="space-y-6">
-                    <div class="flex items-center gap-3 text-emerald-400">
-                        <span class="text-3xl">🔒</span>
-                        <h3 class="text-2xl font-semibold">Fixed Deposit (FD)</h3>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium mb-2">Lump Sum Amount (₹)</label>
-                        <input id="fdAmount" type="number" value="500000" class="w-full bg-white/10 border border-white/20 rounded-2xl px-6 py-5 text-2xl font-medium">
-                    </div>
-                    <div class="grid grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-sm font-medium mb-2">Rate (% p.a.)</label>
-                            <input id="fdRate" type="number" value="7.5" step="0.1" class="w-full bg-white/10 border border-white/20 rounded-2xl px-6 py-5 text-2xl font-medium">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-2">Tenure (Years)</label>
-                            <input id="fdTenure" type="number" value="5" class="w-full bg-white/10 border border-white/20 rounded-2xl px-6 py-5 text-2xl font-medium">
-                        </div>
-                    </div>
-                    <button onclick="calculateFD()" 
-                            class="w-full py-4 bg-white/10 hover:bg-white/20 text-white font-medium rounded-2xl">Calculate FD</button>
-                    
-                    <div id="fdResult" class="hidden bg-white/10 rounded-2xl p-6 space-y-4">
-                        <div class="flex justify-between"><span class="text-slate-300">Maturity Amount</span><span id="fdMaturity" class="font-semibold text-3xl">₹ 7,24,500</span></div>
-                        <div class="flex justify-between"><span class="text-slate-300">Interest Earned</span><span id="fdInterest" class="font-semibold text-3xl">₹ 2,24,500</span></div>
-                        <div class="text-xs text-emerald-400">Quarterly compounding (bank style)</div>
-                    </div>
-                </div>
+<div class="hero">
+  <div class="hero-inner">
+    <h2>Samjho. Bachao. Badhaao.<br><span style="font-size:18px;font-weight:400;color:rgba(255,255,255,0.85)">India ke Common Man ke liye Financial Tools</span></h2>
+    <p>EMI calculate karo, FD vs RD compare karo, apni eligibility jaano.</p>
+  </div>
+</div>
 
-                <!-- RD -->
-                <div class="space-y-6">
-                    <div class="flex items-center gap-3 text-emerald-400">
-                        <span class="text-3xl">🔄</span>
-                        <h3 class="text-2xl font-semibold">Recurring Deposit (RD)</h3>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium mb-2">Monthly Deposit (₹)</label>
-                        <input id="rdMonthly" type="number" value="10000" class="w-full bg-white/10 border border-white/20 rounded-2xl px-6 py-5 text-2xl font-medium">
-                    </div>
-                    <div class="grid grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-sm font-medium mb-2">Rate (% p.a.)</label>
-                            <input id="rdRate" type="number" value="7.5" step="0.1" class="w-full bg-white/10 border border-white/20 rounded-2xl px-6 py-5 text-2xl font-medium">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-2">Tenure (Years)</label>
-                            <input id="rdTenure" type="number" value="5" class="w-full bg-white/10 border border-white/20 rounded-2xl px-6 py-5 text-2xl font-medium">
-                        </div>
-                    </div>
-                    <button onclick="calculateRD()" 
-                            class="w-full py-4 bg-white/10 hover:bg-white/20 text-white font-medium rounded-2xl">Calculate RD</button>
-                    
-                    <div id="rdResult" class="hidden bg-white/10 rounded-2xl p-6 space-y-4">
-                        <div class="flex justify-between"><span class="text-slate-300">Maturity Amount</span><span id="rdMaturity" class="font-semibold text-3xl">₹ 7,35,000</span></div>
-                        <div class="flex justify-between"><span class="text-slate-300">Interest Earned</span><span id="rdInterest" class="font-semibold text-3xl">₹ 2,35,000</span></div>
-                        <div class="text-xs text-emerald-400">Total Invested: <span id="rdInvested" class="font-medium">₹ 6,00,000</span></div>
-                    </div>
-                </div>
-            </div>
+<div class="main-wrap" id="tools">
+  <div class="section-heading">
+    <h3>Vittiya Tools</h3>
+    <span>Financial Calculators</span>
+  </div>
 
-            <!-- Comparison Chart -->
-            <div class="mt-12 pt-8 border-t border-white/10">
-                <h4 class="text-xl font-medium mb-6 flex items-center gap-2"><span>📊</span> Direct Comparison</h4>
-                <canvas id="compareChart" class="w-full h-80"></canvas>
-                <div id="winnerText" class="text-center mt-6 text-lg font-medium"></div>
-            </div>
+  <div class="tools-grid">
+    <div class="tool-tab active" onclick="showTool('emi',this)"><span class="icon">🏠</span>EMI Calculator</div>
+    <div class="tool-tab" onclick="showTool('fdrd',this)"><span class="icon">📈</span>FD vs RD</div>
+    <div class="tool-tab" onclick="showTool('sip',this)"><span class="icon">💰</span>SIP Calculator</div>
+    <div class="tool-tab" onclick="showTool('tax',this)"><span class="icon">📊</span>Income Tax</div>
+  </div>
+
+  <div class="tool-panel active" id="tool-emi">
+    <div class="tool-card">
+      <div class="tool-card-title">🏠 EMI Calculator</div>
+      <div class="sl-row">
+        <span class="sl-label">Loan Amount</span>
+        <input type="range" id="sl-amt" min="100000" max="10000000" step="50000" value="2000000" oninput="updateEMI()">
+        <span class="sl-val" id="lbl-amt">₹20,00,000</span>
+      </div>
+      <div class="sl-row">
+        <span class="sl-label">Interest Rate (%)</span>
+        <input type="range" id="sl-rate" min="6" max="18" step="0.25" value="8.5" oninput="updateEMI()">
+        <span class="sl-val" id="lbl-rate">8.50%</span>
+      </div>
+      <div class="sl-row">
+        <span class="sl-label">Tenure (Years)</span>
+        <input type="range" id="sl-tenure" min="1" max="30" step="1" value="20" oninput="updateEMI()">
+        <span class="sl-val" id="lbl-tenure">20 Saal</span>
+      </div>
+      <div class="metrics-row">
+        <div class="metric-box highlight">
+          <div class="m-label">Monthly EMI</div>
+          <div class="m-val" id="m-emi">₹0</div>
         </div>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="emiChart"></canvas>
+      </div>
     </div>
+  </div>
 
-    <!-- TOOL 3: ELIGIBILITY CHECKER -->
-    <div id="eligibility" class="max-w-7xl mx-auto px-6 pb-20">
-        <div class="tool-card bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 md:p-10">
-            <div class="flex items-center gap-3 mb-8">
-                <div class="text-4xl">✅</div>
-                <h2 class="text-3xl font-semibold">Loan Eligibility Checker</h2>
-            </div>
-            <p class="text-slate-400 mb-8">Bas salary daalo aur 10 seconds mein pata chalega bank aapko kitna loan de sakta hai</p>
-
-            <div class="max-w-lg mx-auto bg-white/10 rounded-3xl p-8">
-                <div class="space-y-8">
-                    <div>
-                        <label class="text-sm block mb-3">Aapki Monthly Salary (₹)</label>
-                        <input id="salary" type="number" value="80000" 
-                               class="w-full text-4xl bg-transparent border-b border-white/30 focus:border-emerald-400 py-4 outline-none">
-                    </div>
-
-                    <div>
-                        <label class="text-sm block mb-3">Existing EMIs (₹)</label>
-                        <input id="existingEmi" type="number" value="0" 
-                               class="w-full text-4xl bg-transparent border-b border-white/30 focus:border-emerald-400 py-4 outline-none">
-                    </div>
-
-                    <div>
-                        <label class="text-sm block mb-3">Loan Type</label>
-                        <select id="loanTypeElig" class="w-full bg-white/10 border border-white/20 rounded-2xl px-6 py-5 text-xl">
-                            <option value="0">🏠 Home Loan (20 yrs @ 8.5%)</option>
-                            <option value="1">🚗 Car Loan (5 yrs @ 9.5%)</option>
-                        </select>
-                    </div>
-
-                    <button onclick="checkEligibility()" 
-                            class="w-full py-6 text-xl font-semibold bg-gradient-to-r from-emerald-400 to-cyan-400 text-slate-900 rounded-3xl hover:brightness-110 transition-all">
-                        Check Kitna Loan Milega
-                    </button>
-
-                    <div id="eligibilityResult" class="hidden mt-6 p-6 bg-white/10 rounded-2xl text-center">
-                        <p class="text-emerald-400 text-sm mb-2">Aap eligible ho</p>
-                        <p id="maxLoanAmount" class="text-6xl font-semibold mb-1">₹ 1,25,00,000</p>
-                        <p class="text-slate-400">Max Loan Amount</p>
-                        
-                        <div class="flex justify-between text-sm mt-8 border-t border-white/10 pt-6">
-                            <div>Max affordable EMI: <span id="maxEmiText" class="font-medium">₹ 40,000</span></div>
-                            <div class="text-emerald-400">Based on 50% salary rule</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div id="schemes" style="margin-top:32px">
+    <div class="section-heading">
+      <h3>Sarkaari Yojanaen</h3>
+      <span>Government Schemes</span>
     </div>
+    <div class="schemes-grid">
+      <div class="scheme-card">
+        <h4>PM Jan Dhan Yojana</h4>
+        <p>Zero balance account, accident insurance ₹2 lakh.</p>
+        <a href="https://pmjdy.gov.in" target="_blank" class="scheme-link">Jaankari Lein →</a>
+      </div>
+      <div class="scheme-card">
+        <h4>Sukanya Samriddhi Yojana</h4>
+        <p>Beti ke liye savings scheme — 8.2% interest.</p>
+        <a href="https://www.indiapost.gov.in" target="_blank" class="scheme-link">Jaankari Lein →</a>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <!-- FOOTER -->
-    <footer class="bg-black/30 py-12 text-center text-xs text-slate-400 border-t border-white/10">
-        <div class="max-w-7xl mx-auto px-6">
-            <p class="mb-2">Made with ❤️ for every common man in India</p>
-            <p>Disclaimer: Yeh calculator sirf educational purpose ke liye hai. Actual bank rates aur eligibility alag ho sakti hai.</p>
-            <p class="mt-6 text-[10px]">Built as a single HTML file • Zero backend • Works offline</p>
-        </div>
-    </footer>
+<footer>
+  <p>© 2025 Jan Dhan Portal | Bharat Sarkar</p>
+</footer>
 
-    <script>
-        // Tailwind script init
-        function initTailwind() {
-            return {
-                config(userConfig = {}) {
-                    return {
-                        configUser: userConfig,
-                        theme: {
-                            extend: {}
-                        }
-                    }
-                },
-                theme(userConfig = {}) {
-                    return {
-                        ...this.defaultTheme(),
-                        ...this.config(userConfig).theme
-                    }
-                },
-                defaultTheme() {
-                    return {
-                        extend: {}
-                    }
-                }
-            }
-        }
-        
-        // Global chart variables
-        let emiChartInstance = null;
-        let compareChartInstance = null;
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+let emiC=null;
 
-        function smoothScrollTo(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-        }
+function fmt(n){return '₹'+Math.round(n).toLocaleString('en-IN');}
 
-        // Theme toggle
-        function toggleTheme() {
-            // Simple dark mode already applied, can extend if needed
-            alert("Bhai, yeh already dark theme mein hai! Future mein light mode bhi add kar denge 😎");
-        }
+function showTool(id, el){
+  document.querySelectorAll('.tool-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tool-panel').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('tool-'+id).classList.add('active');
+}
 
-        // Loan type selection
-        let currentLoanType = 0; // 0 = Home, 1 = Car
-        
-        function selectLoanType(type) {
-            currentLoanType = type;
-            
-            // Update buttons
-            const homeBtn = document.getElementById('homeBtn');
-            const carBtn = document.getElementById('carBtn');
-            
-            if (type === 0) {
-                homeBtn.classList.add('active', 'border-emerald-500', 'bg-emerald-500/10');
-                homeBtn.classList.remove('border-white/30');
-                carBtn.classList.remove('active', 'border-emerald-500', 'bg-emerald-500/10');
-                carBtn.classList.add('border-white/30');
-                
-                // Default values for Home
-                document.getElementById('rate').value = 8.5;
-                document.getElementById('tenure').value = 20;
-            } else {
-                carBtn.classList.add('active', 'border-emerald-500', 'bg-emerald-500/10');
-                carBtn.classList.remove('border-white/30');
-                homeBtn.classList.remove('active', 'border-emerald-500', 'bg-emerald-500/10');
-                homeBtn.classList.add('border-white/30');
-                
-                // Default values for Car
-                document.getElementById('rate').value = 9.5;
-                document.getElementById('tenure').value = 5;
-            }
-        }
+function updateEMI(){
+  const P=+document.getElementById('sl-amt').value;
+  const r=+document.getElementById('sl-rate').value;
+  const t=+document.getElementById('sl-tenure').value;
+  document.getElementById('lbl-amt').textContent=fmt(P);
+  document.getElementById('lbl-rate').textContent=r.toFixed(2)+'%';
+  document.getElementById('lbl-tenure').textContent=t+' Saal';
+  
+  const mR=r/12/100, n=t*12;
+  const emi=P*mR*Math.pow(1+mR,n)/(Math.pow(1+mR,n)-1);
+  document.getElementById('m-emi').textContent=fmt(emi);
 
-        // EMI Calculator
-        function calculateEMI() {
-            const principal = parseFloat(document.getElementById('principal').value) || 0;
-            const annualRate = parseFloat(document.getElementById('rate').value) || 0;
-            const years = parseFloat(document.getElementById('tenure').value) || 0;
-            
-            if (!principal || !annualRate || !years) {
-                alert("Sab fields bhar do bhai!");
-                return;
-            }
-            
-            const monthlyRate = annualRate / 12 / 100;
-            const numPayments = years * 12;
-            
-            let emi = 0;
-            if (monthlyRate === 0) {
-                emi = principal / numPayments;
-            } else {
-                emi = principal * monthlyRate * Math.pow(1 + monthlyRate, numPayments) / 
-                      (Math.pow(1 + monthlyRate, numPayments) - 1);
-            }
-            
-            const totalPayable = emi * numPayments;
-            const totalInterest = totalPayable - principal;
-            
-            // Show results
-            document.getElementById('emiPlaceholder').classList.add('hidden');
-            const resultsDiv = document.getElementById('emiResults');
-            resultsDiv.classList.remove('hidden');
-            
-            document.getElementById('emiValue').textContent = '₹ ' + Math.round(emi).toLocaleString('en-IN');
-            document.getElementById('totalInterest').textContent = '₹ ' + Math.round(totalInterest).toLocaleString('en-IN');
-            document.getElementById('totalPayable').textContent = '₹ ' + Math.round(totalPayable).toLocaleString('en-IN');
-            
-            // Pie Chart
-            const ctx = document.getElementById('emiChart');
-            
-            if (emiChartInstance) emiChartInstance.destroy();
-            
-            emiChartInstance = new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Principal', 'Interest'],
-                    datasets: [{
-                        data: [principal, totalInterest],
-                        backgroundColor: ['#10b981', '#eab308'],
-                        borderColor: '#0f172a',
-                        borderWidth: 6
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    cutout: '70%',
-                    plugins: {
-                        legend: { position: 'bottom', labels: { color: '#e2e8f0', padding: 25, font: { size: 15 } } }
-                    }
-                }
-            });
-        }
+  if(emiC) emiC.destroy();
+  emiC = new Chart(document.getElementById('emiChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Principal', 'Interest'],
+      datasets: [{
+        data: [P, (emi*n)-P],
+        backgroundColor: ['#003087', '#c8922a']
+      }]
+    },
+    options: { responsive: true, maintainAspectRatio: false }
+  });
+}
 
-        // FD Calculator
-        function calculateFD() {
-            const amount = parseFloat(document.getElementById('fdAmount').value) || 0;
-            const rate = parseFloat(document.getElementById('fdRate').value) || 0;
-            const years = parseFloat(document.getElementById('fdTenure').value) || 0;
-            
-            if (!amount || !rate || !years) return;
-            
-            // Quarterly compounding (standard in India)
-            const quarterlyRate = rate / 4 / 100;
-            const numQuarters = years * 4;
-            const maturity = amount * Math.pow(1 + quarterlyRate, numQuarters);
-            const interest = maturity - amount;
-            
-            const resultDiv = document.getElementById('fdResult');
-            resultDiv.classList.remove('hidden');
-            document.getElementById('fdMaturity').textContent = '₹ ' + Math.round(maturity).toLocaleString('en-IN');
-            document.getElementById('fdInterest').textContent = '₹ ' + Math.round(interest).toLocaleString('en-IN');
-            
-            // Trigger comparison if RD also calculated
-            if (!document.getElementById('rdResult').classList.contains('hidden')) {
-                createComparisonChart();
-            }
-        }
-
-        // RD Calculator
-        function calculateRD() {
-            const monthly = parseFloat(document.getElementById('rdMonthly').value) || 0;
-            const rate = parseFloat(document.getElementById('rdRate').value) || 0;
-            const years = parseFloat(document.getElementById('rdTenure').value) || 0;
-            
-            if (!monthly || !rate || !years) return;
-            
-            const n = years * 12; // total months
-            
-            // Standard RD formula used by most Indian banks (simple interest on cumulative deposits)
-            const interest = monthly * n * (n + 1) / 2 * (rate / 1200);
-            const maturity = monthly * n + interest;
-            const totalInvested = monthly * n;
-            
-            const resultDiv = document.getElementById('rdResult');
-            resultDiv.classList.remove('hidden');
-            document.getElementById('rdMaturity').textContent = '₹ ' + Math.round(maturity).toLocaleString('en-IN');
-            document.getElementById('rdInterest').textContent = '₹ ' + Math.round(interest).toLocaleString('en-IN');
-            document.getElementById('rdInvested').textContent = '₹ ' + Math.round(totalInvested).toLocaleString('en-IN');
-            
-            // Trigger comparison if FD also calculated
-            if (!document.getElementById('fdResult').classList.contains('hidden')) {
-                createComparisonChart();
-            }
-        }
-
-        // Comparison Chart
-        function createComparisonChart() {
-            const fdMaturity = parseFloat(document.getElementById('fdMaturity').textContent.replace(/[₹, ]/g, '')) || 0;
-            const rdMaturity = parseFloat(document.getElementById('rdMaturity').textContent.replace(/[₹, ]/g, '')) || 0;
-            
-            if (!fdMaturity || !rdMaturity) return;
-            
-            const ctx = document.getElementById('compareChart');
-            
-            if (compareChartInstance) compareChartInstance.destroy();
-            
-            compareChartInstance = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['Fixed Deposit', 'Recurring Deposit'],
-                    datasets: [{
-                        label: 'Maturity Amount (₹)',
-                        data: [fdMaturity, rdMaturity],
-                        backgroundColor: ['#10b981', '#eab308'],
-                        borderRadius: 12,
-                        barThickness: 60
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: { display: false }
-                    },
-                    scales: {
-                        y: { grid: { color: '#334155' }, ticks: { color: '#e2e8f0' } },
-                        x: { grid: { color: '#334155' }, ticks: { color: '#e2e8f0' } }
-                    }
-                }
-            });
-            
-            // Winner text
-            const winner = fdMaturity > rdMaturity ? 'FD' : 'RD';
-            const diff = Math.abs(fdMaturity - rdMaturity);
-            document.getElementById('winnerText').innerHTML = `
-                <span class="text-emerald-400">🎉 ${winner} better hai is case mein!</span><br>
-                Difference: ₹ ${diff.toLocaleString('en-IN')}
-            `;
-        }
-
-        // Eligibility Checker
-        function checkEligibility() {
-            const salary = parseFloat(document.getElementById('salary').value) || 0;
-            const existingEmi = parseFloat(document.getElementById('existingEmi').value) || 0;
-            const loanType = parseInt(document.getElementById('loanTypeElig').value);
-            
-            if (!salary) {
-                alert("Salary daal do bhai!");
-                return;
-            }
-            
-            // 50% salary rule (common bank thumb rule)
-            let maxEmi = (salary * 0.5) - existingEmi;
-            if (maxEmi < 0) maxEmi = 0;
-            
-            let rate = 8.5;
-            let years = 20;
-            
-            if (loanType === 1) { // Car
-                rate = 9.5;
-                years = 5;
-            }
-            
-            // Reverse EMI formula to get max loan
-            const monthlyRate = rate / 12 / 100;
-            const numPayments = years * 12;
-            
-            let maxLoan = 0;
-            if (monthlyRate === 0) {
-                maxLoan = maxEmi * numPayments;
-            } else {
-                maxLoan = maxEmi * (1 - Math.pow(1 + monthlyRate, -numPayments)) / monthlyRate;
-            }
-            
-            // Show result
-            const resultDiv = document.getElementById('eligibilityResult');
-            resultDiv.classList.remove('hidden');
-            
-            document.getElementById('maxLoanAmount').textContent = '₹ ' + Math.round(maxLoan).toLocaleString('en-IN');
-            document.getElementById('maxEmiText').textContent = '₹ ' + Math.round(maxEmi).toLocaleString('en-IN');
-        }
-
-        // Keyboard support
-        function addKeyboardSupport() {
-            document.addEventListener('keypress', function(e) {
-                if (e.key === "Enter") {
-                    const activeSection = document.querySelector('.tool-card:hover');
-                    if (activeSection) {
-                        // Auto calculate based on which section
-                        if (document.getElementById('emiResults').parentElement.parentElement.contains(activeSection)) {
-                            calculateEMI();
-                        }
-                    }
-                }
-            });
-        }
-
-        // Initialize everything
-        window.onload = function() {
-            initTailwind();
-            selectLoanType(0); // Default Home Loan
-            addKeyboardSupport();
-            
-            console.log('%c✅ The Common Man\'s Banking Suite loaded successfully!', 'color:#10b981; font-size:18px; font-weight:bold');
-            console.log('Bhai, ab full website ready hai. Bas copy-paste karke index.html bana lo!');
-        };
-    </script>
+updateEMI();
+</script>
 </body>
 </html>
